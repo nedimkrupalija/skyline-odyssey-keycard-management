@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34607.119
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "skyline-odyssey-keycard-management", "skyline-odyssey-keycard-management\skyline-odyssey-keycard-management.csproj", "{4CFEDF0F-B50E-4E95-9716-C3DBC85F98F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4CFEDF0F-B50E-4E95-9716-C3DBC85F98F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CFEDF0F-B50E-4E95-9716-C3DBC85F98F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CFEDF0F-B50E-4E95-9716-C3DBC85F98F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CFEDF0F-B50E-4E95-9716-C3DBC85F98F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2F7FE2C-30E2-4BB5-9618-263C33907D83}
+	EndGlobalSection
+EndGlobal
