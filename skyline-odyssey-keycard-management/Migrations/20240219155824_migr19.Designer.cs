@@ -12,8 +12,8 @@ using skyline_odyssey_keycard_management;
 namespace skyline_odyssey_keycard_management.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240219144658_migr5")]
-    partial class migr5
+    [Migration("20240219155824_migr19")]
+    partial class migr19
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,12 +49,7 @@ namespace skyline_odyssey_keycard_management.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Keycard", (string)null);
                 });
@@ -71,12 +66,7 @@ namespace skyline_odyssey_keycard_management.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Role", (string)null);
                 });
@@ -92,18 +82,15 @@ namespace skyline_odyssey_keycard_management.Migrations
                     b.Property<int>("CardId")
                         .HasColumnType("int");
 
-                    b.Property<int>("KeycardId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("KeycardId");
+                    b.HasIndex("CardId");
 
                     b.HasIndex("UserId");
 
@@ -118,12 +105,12 @@ namespace skyline_odyssey_keycard_management.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<int>("CardId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("KeycardId")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -142,37 +129,29 @@ namespace skyline_odyssey_keycard_management.Migrations
 
                     b.HasKey("UserId");
 
-                    b.HasIndex("CardId")
-                        .IsUnique();
+                    b.HasIndex("KeycardId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("User", (string)null);
                 });
 
-            modelBuilder.Entity("skyline_odyssey_keycard_management.Models.Keycard", b =>
-                {
-                    b.HasOne("skyline_odyssey_keycard_management.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("skyline_odyssey_keycard_management.Models.Role", b =>
-                {
-                    b.HasOne("skyline_odyssey_keycard_management.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("skyline_odyssey_keycard_management.Models.UsageHistory", b =>
+                {
+                    b.HasOne("skyline_odyssey_keycard_management.Models.Keycard", "Keycard")
+                        .WithMany("UsageHistories")
+                        .HasForeignKey("CardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("skyline_odyssey_keycard_management.Models.User", null)
+                        .WithMany("UsageHistories")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Keycard");
+                });
+
+            modelBuilder.Entity("skyline_odyssey_keycard_management.Models.User", b =>
                 {
                     b.HasOne("skyline_odyssey_keycard_management.Models.Keycard", "Keycard")
                         .WithMany()
@@ -180,27 +159,8 @@ namespace skyline_odyssey_keycard_management.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("skyline_odyssey_keycard_management.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Keycard");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("skyline_odyssey_keycard_management.Models.User", b =>
-                {
-                    b.HasOne("skyline_odyssey_keycard_management.Models.Keycard", "Keycard")
-                        .WithOne()
-                        .HasForeignKey("skyline_odyssey_keycard_management.Models.User", "CardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("skyline_odyssey_keycard_management.Models.Role", "Role")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -208,6 +168,21 @@ namespace skyline_odyssey_keycard_management.Migrations
                     b.Navigation("Keycard");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("skyline_odyssey_keycard_management.Models.Keycard", b =>
+                {
+                    b.Navigation("UsageHistories");
+                });
+
+            modelBuilder.Entity("skyline_odyssey_keycard_management.Models.Role", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("skyline_odyssey_keycard_management.Models.User", b =>
+                {
+                    b.Navigation("UsageHistories");
                 });
 #pragma warning restore 612, 618
         }

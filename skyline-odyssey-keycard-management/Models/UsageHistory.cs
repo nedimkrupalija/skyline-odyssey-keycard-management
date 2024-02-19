@@ -17,10 +17,7 @@ namespace skyline_odyssey_keycard_management.Models
         [Key]
 		public int Id { get; set; }
 
-		[ForeignKey("User")]
-		public int UserId { get; set; }	
-
-		public User User { get; set; }
+		
 
 		[ForeignKey("Keycard")]
 		public int CardId { get; set; }

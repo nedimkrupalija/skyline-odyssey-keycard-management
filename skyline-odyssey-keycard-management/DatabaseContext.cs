@@ -32,26 +32,18 @@ namespace skyline_odyssey_keycard_management
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<User>()
-		.HasOne(u => u.Keycard)
-		.WithOne(k => k.User)
-		.HasForeignKey<Keycard>(k => k.UserId)
-		.OnDelete(DeleteBehavior.Restrict);
-			modelBuilder.Entity<User>()
-				.HasMany(u => u.UsageHistories)
-				.WithOne(uh => uh.User)
-				.HasForeignKey(uh => uh.UserId)
-				.OnDelete(DeleteBehavior.Restrict);
-			modelBuilder.Entity<Keycard>()
-				.HasMany(k => k.UsageHistories)
-				.WithOne(uh => uh.Keycard)
-				.HasForeignKey(uh => uh.CardId)
-				.OnDelete(DeleteBehavior.Restrict);
-			modelBuilder.Entity<User>()
-				.HasOne(u => u.Role)
-				.WithMany(r => r.Users)
-				.HasForeignKey(u => u.RoleId)
-				.OnDelete(DeleteBehavior.Restrict);
+			modelBuilder.Entity<UsageHistory>().ToTable("UsageHistory");
+
+			modelBuilder.Entity<User>().ToTable("User")
+				.HasMany(c => c.UsageHistories);
+			modelBuilder.Entity<Keycard>().ToTable("Keycard")
+				.HasMany(c => c.UsageHistories)
+				.WithOne(c => c.Keycard);
+			modelBuilder.Entity<Role>().ToTable("Role")
+				.HasMany(c => c.Users)
+				.WithOne(c => c.Role);
+			modelBuilder.Entity<AccessPoint>().ToTable("AccessPoint");
+
 
 
 

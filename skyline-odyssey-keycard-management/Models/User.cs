@@ -29,9 +29,9 @@ namespace skyline_odyssey_keycard_management.Models
 		public Role Role { get; set; }
 
 		[ForeignKey("Keycard")]
-		public int CardId { get; set; }
-		public Keycard Keycard { get; set; }
+		public int KeycardId { get; set; }
 
+		public Keycard Keycard { get; set; }
 		
 
 		public ICollection<UsageHistory> UsageHistories { get; set; }	
