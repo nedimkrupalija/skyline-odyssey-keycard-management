@@ -15,6 +15,20 @@ namespace skyline_odyssey_keycard_management.Models
         {
             
         }
+
+        public User(int userId, string firstName, string lastName, string username, string password, int roleId, Role role, int keycardId, Keycard keycard)
+        {
+            UserId = userId;
+            FirstName = firstName;
+            LastName = lastName;
+            Username = username;
+            Password = password;
+            RoleId = roleId;
+            Role = role;
+            KeycardId = keycardId;
+            Keycard = keycard;
+        }
+
         [Key]
 		public int UserId { get; set; }
 		public string FirstName { get; set; }
