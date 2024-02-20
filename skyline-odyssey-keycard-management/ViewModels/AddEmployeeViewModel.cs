@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace skyline_odyssey_keycard_management.ViewModels
 {
-    internal class AddEmployeeViewModel
+    public class AddEmployeeViewModel : ViewModelBase
     {
+        public EmployeeDetailsFormViewModel EmployeeDetailsFormViewModel { get; }
+
+        public AddEmployeeViewModel()
+        {
+            EmployeeDetailsFormViewModel = new EmployeeDetailsFormViewModel();
+        }
     }
 }

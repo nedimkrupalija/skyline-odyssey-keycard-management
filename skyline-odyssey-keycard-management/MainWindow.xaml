@@ -8,6 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="440" Width="800">
     <Grid Margin="25">
-        <views:AddEmpoyeeView />
+        <views:AdminPanelView />
     </Grid>
 </Window>

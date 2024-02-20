@@ -1,4 +1,5 @@
-﻿using System;
+﻿using skyline_odyssey_keycard_management.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,23 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace skyline_odyssey_keycard_management
+namespace skyline_odyssey_keycard_management.Components
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for AccessPointListingItem.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class AccessPointListingItem : UserControl
     {
-        public LoginView()
+        public AccessPointListingItem()
         {
             InitializeComponent();
-        }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-
+            DataContext = new AccessPointListingItem();
         }
     }
 }
