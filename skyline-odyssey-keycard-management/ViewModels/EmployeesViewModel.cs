@@ -1,4 +1,5 @@
 ﻿using skyline_odyssey_keycard_management.Components;
+using skyline_odyssey_keycard_management.Store;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         public ICommand AssignNewKeycardCommand { get; }
 
-        public EmployeesViewModel() {
-            EmployeeListingViewModel = new EmployeeListingViewModel();
-            EmployeeDetailsViewModel = new EmployeeDetailsViewModel();
+        public EmployeesViewModel(SelectedEmployeeStore selectedEmployeeStore) {
+            EmployeeListingViewModel = new EmployeeListingViewModel(selectedEmployeeStore);
+            EmployeeDetailsViewModel = new EmployeeDetailsViewModel(selectedEmployeeStore);
         }
     }
 }

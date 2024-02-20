@@ -6,13 +6,12 @@
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border Background="SkyBlue" Margin="10" CornerRadius="20">
-        <StackPanel Margin="20">
-            <Label Content="Login" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="18"/>
-            <Separator></Separator>
-            <Label Content="Username" Foreground="White" FontWeight="Bold"/>
+    <Border Background="white" Margin="10" CornerRadius="20">
+        <StackPanel Margin="20" MaxWidth="400" VerticalAlignment="Center">
+            <Label Content="Login" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="18"/>
+            <Label Content="Username" Foreground="Black" FontWeight="Bold"/>
             <TextBox x:Name="UsernameTextBox" Background="White" Foreground="Black" Padding="5"/>
-            <Label Content="Password" Foreground="White" FontWeight="Bold"/>
+            <Label Content="Password" Foreground="Black" FontWeight="Bold"/>
             <PasswordBox x:Name="PasswordTextBox" Background="White" Padding="5"/>
             <Button Content="Login" Width="120" Margin="15" FontWeight="Bold" Click="LoginButton_Click"/>
         </StackPanel>

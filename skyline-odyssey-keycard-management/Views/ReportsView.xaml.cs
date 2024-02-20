@@ -1,5 +1,4 @@
-﻿using skyline_odyssey_keycard_management.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace skyline_odyssey_keycard_management.Components
+namespace skyline_odyssey_keycard_management.Views
 {
     /// <summary>
-    /// Interaction logic for EmployeesListing.xaml
+    /// Interaction logic for ReportsView.xaml
     /// </summary>
-    public partial class EmployeesListing : UserControl
+    public partial class ReportsView : UserControl
     {
-        public EmployeesListing()
+        public ReportsView()
         {
             InitializeComponent();
         }

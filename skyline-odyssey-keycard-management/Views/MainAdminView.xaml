@@ -12,11 +12,17 @@
         <DataTemplate x:Name="employeesView" DataType="{x:Type viewmodels:EmployeesViewModel}">
             <views:AdminPanelView DataContext="{Binding}"></views:AdminPanelView>
         </DataTemplate>
+        <DataTemplate x:Name="accessPointsView" DataType="{x:Type viewmodels:AccessPointViewModel}">
+            <views:AccessPointsView DataContext="{Binding}"></views:AccessPointsView>
+        </DataTemplate>
+        <DataTemplate x:Name="usageReportsView" DataType="{x:Type viewmodels:UsageReportsViewModel}">
+            <views:ReportsView DataContext="{Binding}"></views:ReportsView>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid Background="White">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button Height="60" Width="150" Margin="5">
-                <TextBlock Text="Acces Ponits" 
+            <Button Height="60" Width="150" Margin="5" Click="AccessPoints_Clicked">
+                <TextBlock Text="Access Points" 
                HorizontalAlignment="Center" 
                VerticalAlignment="Center" FontSize="15"/>
             </Button>
@@ -25,7 +31,7 @@
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center" FontSize="15"/>
             </Button>
-            <Button Height="60" Width="150" Margin="5">
+            <Button Height="60" Width="150" Margin="5" Click="Reports_Clicked">
                 <TextBlock Text="Report" 
                 HorizontalAlignment="Center" 
                 VerticalAlignment="Center" FontSize="15"/>

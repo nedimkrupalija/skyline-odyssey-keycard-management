@@ -1,5 +1,4 @@
-﻿using skyline_odyssey_keycard_management.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,13 +16,17 @@ using System.Windows.Shapes;
 namespace skyline_odyssey_keycard_management.Components
 {
     /// <summary>
-    /// Interaction logic for EmployeesListing.xaml
+    /// Interaction logic for TimePickerControl.xaml
     /// </summary>
-    public partial class EmployeesListing : UserControl
+    public partial class TimePickerControl : UserControl
     {
-        public EmployeesListing()
+        public List<int> Hours { get; } = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+        public List<int> Minutes { get; } = new List<int> { 0, 15, 30, 45 };
+        public List<string> AMPM { get; } = new List<string> { "AM", "PM" };
+        public TimePickerControl()
         {
             InitializeComponent();
+            DataContext = this;
         }
     }
 }
