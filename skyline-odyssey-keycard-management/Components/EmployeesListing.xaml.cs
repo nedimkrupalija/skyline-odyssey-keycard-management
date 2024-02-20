@@ -24,7 +24,6 @@ namespace skyline_odyssey_keycard_management.Components
         public EmployeesListing()
         {
             InitializeComponent();
-            DataContext = new EmployeeListingViewModel();
         }
     }
 }
