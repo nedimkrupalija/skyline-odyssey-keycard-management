@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using skyline_odyssey_keycard_management.Components;
+﻿using skyline_odyssey_keycard_management.Components;
 using skyline_odyssey_keycard_management.Store;
 using skyline_odyssey_keycard_management.ViewModels;
 using System;
@@ -52,16 +51,16 @@ namespace skyline_odyssey_keycard_management.Views
 
         private void EmployeeDetailsForm_SubmitClicked(object sender, EventArgs e)
         {
-			// Close the Popup
-			employeeDetailsPopup.IsOpen = false;
-		}   
+            // Close the Popup
+            employeeDetailsPopup.IsOpen = false;
+        }
 
         private void Add_Clicked(object sender, RoutedEventArgs e)
         {
             employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
         }
 
-        private void BackButton_Clicked(object sender, RoutedEventArgs e)
+        private void BackButton_Clicked(object sender, RoutedEventArgs e) { 
      
             this.Content = new MainAdminView();
         }
