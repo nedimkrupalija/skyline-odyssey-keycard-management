@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Views;
-using skyline_odyssey_keycard_management.ViewModels;
+﻿using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
