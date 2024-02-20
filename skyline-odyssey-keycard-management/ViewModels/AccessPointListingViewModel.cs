@@ -14,15 +14,18 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         public IEnumerable<AccessPointListingItemViewModel> AccessPointListingItemViewModels => _accessPointListingItemViewModels;
 
+        private DatabaseContext _databaseContext = new DatabaseContext();
+
 
         public AccessPointListingViewModel()
         {
-            _accessPointListingItemViewModels = new ObservableCollection<AccessPointListingItemViewModel>
+
+            var accesspoints = _databaseContext.AccessPoints.ToList();
+            _accessPointListingItemViewModels = new ObservableCollection<AccessPointListingItemViewModel>();
+            foreach (var accesspoint in accesspoints)
             {
-                new AccessPointListingItemViewModel(new AccessPoint(1, 2, "room1")),
-                new AccessPointListingItemViewModel(new AccessPoint(1, 2, "room2")),
-                new AccessPointListingItemViewModel(new AccessPoint(1, 2, "room3")),
-            };
+                _accessPointListingItemViewModels.Add(new AccessPointListingItemViewModel(accesspoint));
+            }
         }
     }
 }
