@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace skyline_odyssey_keycard_management.ViewModels
 {
-    public class EmployeeDetailsViewModel
+    public class EmployeeDetailsViewModel : ViewModelBase
     {
+
     }
 }
