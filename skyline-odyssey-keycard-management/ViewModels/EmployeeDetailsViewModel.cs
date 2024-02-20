@@ -2,6 +2,7 @@
 using skyline_odyssey_keycard_management.Store;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,8 @@ namespace skyline_odyssey_keycard_management.ViewModels
             OnPropertyChanged(nameof(Username));
             OnPropertyChanged(nameof(Role));
             OnPropertyChanged(nameof(Keycard));
+
+            Trace.WriteLine(_selectedEmployeeStore.SelectedEmployee.Role.Name);
         }
     }
 }
