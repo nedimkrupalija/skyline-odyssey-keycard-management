@@ -5,10 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
              xmlns:components="clr-namespace:skyline_odyssey_keycard_management.Components"
+             xmlns:views="clr-namespace:skyline_odyssey_keycard_management.Views"
+             xmlns:viewmodels="clr-namespace:skyline_odyssey_keycard_management.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Name="mainAdminView" DataType="{x:Type viewmodels:EmployeesViewModel}">
+            <views:MainAdminView DataContext="{Binding}"></views:MainAdminView>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -21,7 +30,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="0 0 10 0" Content="Back" />
+            <Button Grid.Column="0" Margin="0 0 10 0" Content="Back"  Click="BackButton_Clicked"/>
             <TextBlock Grid.Column="1" FontSize="25" Text="Usage reports" />
 
         </Grid>
@@ -44,19 +53,27 @@
                 <ColumnDefinition Width="*" MaxWidth="250"/>
             </Grid.ColumnDefinitions>
 
-            <DatePicker Grid.Column="0" Margin="0 0 10 0"/>
-            <DatePicker Grid.Column="1" />
+            <DatePicker x:Name="startDatePicker" Grid.Column="0" Margin="0 0 10 0"/>
+            <DatePicker x:Name="endDatePicker" Grid.Column="1" />
 
         </Grid>
 
-        <Grid Grid.Row="3" Margin="0 20 0 0">
+        <Grid Grid.Row="3" Margin="0 5 0 0" HorizontalAlignment="Right">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" MaxWidth="250" />
             </Grid.ColumnDefinitions>
 
-            <components:UsageReportListing Grid.Column="0"/>
+            <Button Content="Generate Report" Margin="5"/>
 
         </Grid>
+
+        
+
+        <DataGrid x:Name="reportDataGrid" Grid.Row="4" AutoGenerateColumns="True" Margin="0 20"/>
+
+
+
+
 
     </Grid>
 </UserControl>

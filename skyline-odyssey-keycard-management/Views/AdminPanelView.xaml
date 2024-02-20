@@ -6,8 +6,14 @@
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
              xmlns:components="clr-namespace:skyline_odyssey_keycard_management.Components" 
              xmlns:viewmodels="clr-namespace:skyline_odyssey_keycard_management.ViewModels"
+             xmlns:views="clr-namespace:skyline_odyssey_keycard_management.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Name="mainAdminView" DataType="{x:Type viewmodels:EmployeesViewModel}">
+            <views:MainAdminView DataContext="{Binding}"></views:MainAdminView>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -21,7 +27,7 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="0 0 10 0" Content="Back" />
+            <Button Grid.Column="0" Margin="0 0 10 0" Content="Back" Click="BackButton_Clicked"/>
 
             <TextBlock Grid.Column="1" FontSize="25" Text="Admin panel" />
 

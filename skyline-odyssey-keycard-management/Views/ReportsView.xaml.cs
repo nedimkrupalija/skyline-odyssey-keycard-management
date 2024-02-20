@@ -24,5 +24,14 @@ namespace skyline_odyssey_keycard_management.Views
         {
             InitializeComponent();
         }
+
+        private void BackButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            MainAdminView mainAdminPanel = new MainAdminView();
+            mainAdminPanel.Width = this.Width;
+            mainAdminPanel.Height = this.Height;
+
+            this.Content = mainAdminPanel;
+        }
     }
 }

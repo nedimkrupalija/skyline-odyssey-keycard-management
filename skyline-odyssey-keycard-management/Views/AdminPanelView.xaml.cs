@@ -1,4 +1,5 @@
-﻿using skyline_odyssey_keycard_management.Components;
+﻿using GalaSoft.MvvmLight.Command;
+using skyline_odyssey_keycard_management.Components;
 using skyline_odyssey_keycard_management.Store;
 using skyline_odyssey_keycard_management.ViewModels;
 using System;
@@ -28,15 +29,19 @@ namespace skyline_odyssey_keycard_management.Views
         public EmployeeListingViewModel EmployeeListingViewModel { get; set; }
         public EmployeeDetailsViewModel EmployeeDetailsViewModel { get; set; }
 
+
         public AdminPanelView()
         {
             InitializeComponent();
+
             EmployeeListingViewModel = new EmployeeListingViewModel(selectedEmployeeStore);
             EmployeeDetailsViewModel = new EmployeeDetailsViewModel(selectedEmployeeStore);
             DataContext = this;
 
+
             employeeDetailsForm.CancelClicked += EmployeeDetailsForm_CancelClicked;
         }
+
 
         private void EmployeeDetailsForm_CancelClicked(object sender, EventArgs e)
         {
@@ -47,6 +52,15 @@ namespace skyline_odyssey_keycard_management.Views
         private void Add_Clicked(object sender, RoutedEventArgs e)
         {
             employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
+        }
+
+        private void BackButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            MainAdminView mainAdminPanel = new MainAdminView();
+            mainAdminPanel.Width = this.Width;
+            mainAdminPanel.Height = this.Height;
+
+            this.Content = mainAdminPanel;
         }
 
     }
