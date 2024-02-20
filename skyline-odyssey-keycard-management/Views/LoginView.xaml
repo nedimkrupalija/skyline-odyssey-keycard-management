@@ -1,0 +1,22 @@
+﻿<Window x:Class="skyline_odyssey_keycard_management.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
+        xmlns:viewmodels="clr-namespace:skyline_odyssey_keycard_management.ViewModels"
+        xmlns:views="clr-namespace:skyline_odyssey_keycard_management.Views"
+        mc:Ignorable="d"
+        Title="LoginView" Height="320" Width="300">
+    <Border Background="SkyBlue" Margin="10" CornerRadius="20">
+        <StackPanel Margin="20">
+            <Label Content="Login" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="18"/>
+            <Separator></Separator>
+            <Label Content="Username" Foreground="White" FontWeight="Bold"/>
+            <TextBox x:Name="UsernameTextBox" Background="White" Foreground="Black" Padding="5"/>
+            <Label Content="Password" Foreground="White" FontWeight="Bold"/>
+            <PasswordBox x:Name="PasswordTextBox" Background="White" Padding="5"/>
+            <Button Content="Login" Width="120" Margin="15" FontWeight="Bold" Click="LoginButton_Click"/>
+        </StackPanel>
+    </Border>
+</Window>
