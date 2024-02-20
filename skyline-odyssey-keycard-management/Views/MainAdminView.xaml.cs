@@ -34,5 +34,23 @@ namespace skyline_odyssey_keycard_management.Views
 
             this.Content = adminPanel;
         }
+
+        private void AccessPoints_Clicked(object sender, RoutedEventArgs e)
+        {
+            AccessPointsView accessPointsPanel = new AccessPointsView();
+            accessPointsPanel.Width = this.Width;
+            accessPointsPanel.Height = this.Height;
+
+            this.Content = accessPointsPanel;
+        }
+
+        private void Reports_Clicked(object sender, RoutedEventArgs e)
+        {
+            ReportsView reportsPanel = new ReportsView();
+            reportsPanel.Width = this.Width;
+            reportsPanel.Height = this.Height;
+
+            this.Content = reportsPanel;
+        }
     }
 }
