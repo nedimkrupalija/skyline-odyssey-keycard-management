@@ -46,7 +46,6 @@ namespace skyline_odyssey_keycard_management.ViewModels
             foreach (var user in users)
             {
                 _employeeListingItemViewModels.Add(new EmployeeListingItemViewModel(user));
-
             }
 
         }
