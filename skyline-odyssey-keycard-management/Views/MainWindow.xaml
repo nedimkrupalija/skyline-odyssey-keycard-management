@@ -10,7 +10,6 @@
 
     <Grid Margin="25">
         <views:LoginView />
-
     </Grid>
 
 </Window>

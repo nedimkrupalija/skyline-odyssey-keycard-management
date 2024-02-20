@@ -16,13 +16,16 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" FontSize="25" Text="Admin panel" />
+            <Button Grid.Column="0" Margin="0 0 10 0" Content="Back" />
 
-            <Button Grid.Column="1" Content="Add employee" Command="{Binding AddNewEmployeeCommand}" Click="Add_Clicked"/>
+            <TextBlock Grid.Column="1" FontSize="25" Text="Admin panel" />
+
+            <Button Grid.Column="2" Content="Add employee" Command="{Binding AddNewEmployeeCommand}" Click="Add_Clicked"/>
         </Grid>
 
         <Grid Grid.Row="1" Margin="0 20 0 0">
