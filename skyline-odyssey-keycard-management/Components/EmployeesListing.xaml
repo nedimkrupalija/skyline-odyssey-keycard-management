@@ -13,7 +13,7 @@
                     <VisualBrush Visual="{Binding ElementName=border}" />
                 </Grid.OpacityMask>
                 <Border x:Name="border" Background="White" CornerRadius="5"/>
-                <ListView BorderThickness="0" Padding="5" ItemsSource="{Binding EmployeeListingItemViewModels}" >
+                <ListView BorderThickness="0" Padding="5" SelectedItem="{Binding SelectedEmployeeListingItemViewModel}" ItemsSource="{Binding EmployeeListingItemViewModels}" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>

@@ -1,4 +1,5 @@
 ﻿using skyline_odyssey_keycard_management.Components;
+using skyline_odyssey_keycard_management.Store;
 using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,14 +24,15 @@ namespace skyline_odyssey_keycard_management.Views
     /// </summary>
     public partial class AdminPanelView : UserControl
     {
+        private readonly SelectedEmployeeStore selectedEmployeeStore = new SelectedEmployeeStore();
         public EmployeeListingViewModel EmployeeListingViewModel { get; set; }
         public EmployeeDetailsViewModel EmployeeDetailsViewModel { get; set; }
 
         public AdminPanelView()
         {
             InitializeComponent();
-            EmployeeListingViewModel = new EmployeeListingViewModel();
-            EmployeeDetailsViewModel = new EmployeeDetailsViewModel();
+            EmployeeListingViewModel = new EmployeeListingViewModel(selectedEmployeeStore);
+            EmployeeDetailsViewModel = new EmployeeDetailsViewModel(selectedEmployeeStore);
             DataContext = this;
 
             employeeDetailsForm.CancelClicked += EmployeeDetailsForm_CancelClicked;
