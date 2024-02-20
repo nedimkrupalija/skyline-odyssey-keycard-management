@@ -7,12 +7,10 @@
         xmlns:views="clr-namespace:skyline_odyssey_keycard_management.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="440" Width="800">
-<<<<<<< HEAD:skyline-odyssey-keycard-management/MainWindow.xaml
+
     <Grid Margin="25">
-        <views:AdminPanelView />
-=======
-    <Grid>
-        <views:MainAdminView></views:MainAdminView>
->>>>>>> main:skyline-odyssey-keycard-management/Views/MainWindow.xaml
+        <views:LoginView />
+
     </Grid>
+
 </Window>
