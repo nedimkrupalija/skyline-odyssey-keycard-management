@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
 using skyline_odyssey_keycard_management.Models;
 using skyline_odyssey_keycard_management.Store;
 using System;
@@ -37,11 +38,12 @@ namespace skyline_odyssey_keycard_management.ViewModels
         public EmployeeListingViewModel(SelectedEmployeeStore selectedEmployeeStore)
         {
             _selectedEmployeeStore = selectedEmployeeStore;
-            var users = _databaseContext.Users.ToList();
+            var users = _databaseContext.Users.Include(u => u.Keycard).Include(u => u.Role).ToList();
             _employeeListingItemViewModels = new ObservableCollection<EmployeeListingItemViewModel>();
             foreach(var user in users)
             {
                 _employeeListingItemViewModels.Add(new EmployeeListingItemViewModel(user));
+                
             }
            
         }

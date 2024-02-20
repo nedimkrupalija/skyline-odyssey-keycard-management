@@ -14,11 +14,12 @@ namespace skyline_odyssey_keycard_management.Models
         {
             
         }
+
         [Key]
 		public int Id { get; set; }
 
 
-		public Boolean IsAssigned { get; set; } = false;
+		public Boolean IsAssigned { get; set; }
 
 		public ICollection<UsageHistory> UsageHistories { get; set; }
 		
