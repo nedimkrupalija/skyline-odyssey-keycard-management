@@ -21,7 +21,7 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="0 0 10 0" Content="Back" />
+            <Button Grid.Column="0" Margin="0 0 10 0" Content="Back" Click="BackButton_Click" />
 
             <TextBlock Grid.Column="1" FontSize="25" Text="Access points" />
 

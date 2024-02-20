@@ -56,5 +56,9 @@ namespace skyline_odyssey_keycard_management.Views
             employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
         }
 
+        private void BackButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            this.Content = new MainAdminView();
+        }
     }
 }

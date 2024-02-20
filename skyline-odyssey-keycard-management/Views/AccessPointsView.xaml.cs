@@ -31,5 +31,10 @@ namespace skyline_odyssey_keycard_management.Views
             AccessPointDetailsViewModel = new AccessPointDetailsViewModel();
             DataContext = this;
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = new MainAdminView();
+        }
     }
 }
