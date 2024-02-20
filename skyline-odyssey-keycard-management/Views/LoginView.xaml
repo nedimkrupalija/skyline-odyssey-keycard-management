@@ -5,22 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
              mc:Ignorable="d" 
-<<<<<<< HEAD
              d:DesignHeight="320" d:DesignWidth="300">
     <Border Background="SkyBlue" Margin="10" CornerRadius="20">
         <StackPanel Margin="20">
             <Label Content="Login" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="18"/>
             <Separator></Separator>
             <Label Content="Username" Foreground="White" FontWeight="Bold"/>
-=======
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Border Background="white" Margin="10" CornerRadius="20">
-        <StackPanel Margin="20" MaxWidth="400" VerticalAlignment="Center">
-            <Label Content="Login" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="18"/>
-            <Label Content="Username" Foreground="Black" FontWeight="Bold"/>
->>>>>>> 451d0748c476b237249042fbc5117a1b75cc55f9
             <TextBox x:Name="UsernameTextBox" Background="White" Foreground="Black" Padding="5"/>
-            <Label Content="Password" Foreground="Black" FontWeight="Bold"/>
+            <Label Content="Password" Foreground="White" FontWeight="Bold"/>
             <PasswordBox x:Name="PasswordTextBox" Background="White" Padding="5"/>
             <Button Content="Login" IsDefault="True" Width="120" Margin="15" FontWeight="Bold" Click="LoginButton_Click"/>
         </StackPanel>
