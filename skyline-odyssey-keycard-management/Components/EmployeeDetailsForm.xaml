@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" Background="white" d:DesignWidth="800">
+             d:DesignHeight="450" Background="white" d:DesignWidth="800"
+             >
     <Border Padding="30 10" BorderThickness="1" BorderBrush="Black" CornerRadius="5">
         
         <Grid Grid.IsSharedSizeScope="True" Background="White" MinWidth="300" MaxHeight="400">
@@ -28,7 +29,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Margin="0 0 20 0" Text="First name" FontWeight="Bold" />
-            <TextBox Grid.Column="1" Text="{Binding FirstName}"/>
+            <TextBox x:Name="FirstName" Grid.Column="1" Text="{Binding FirstName}"/>
 
         </Grid>
 
@@ -39,7 +40,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Margin="0 0 20 0" Text="Last name" FontWeight="Bold" />
-            <TextBox Grid.Column="1" Text="{Binding LastName}"/>
+            <TextBox x:Name="LastName" Grid.Column="1" Text="{Binding LastName}"/>
 
         </Grid>
 
@@ -50,7 +51,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Margin="0 0 20 0" Text="Role" FontWeight="Bold" />
-            <TextBox Grid.Column="1" Text="{Binding Role}"/>
+            <ComboBox x:Name="ComboBoxRole" Grid.Column="1" ItemsSource="{Binding Role}"/>
 
         </Grid>
 
@@ -61,12 +62,12 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Margin="0 0 20 0" Text="Assign Keycard" FontWeight="Bold" />
-            <ComboBox VerticalAlignment="Center" Grid.Column="1"/>
+            <ComboBox x:Name="ComboBoxKeycard" VerticalAlignment="Center" Grid.Column="1"/>
 
         </Grid>
 
         <WrapPanel Grid.Row="5" Margin="0 20 0 0" HorizontalAlignment="Right">
-            <Button Content="Submit" Command="{Binding SubmitCommand}" IsEnabled="{Binding CanSubmit}" />
+            <Button Content="Submit" Command="{Binding SubmitCommand}" IsEnabled="{Binding CanSubmit}" Click="Submit_Clicked"/>
             <Button Content="Cancel" Command="{Binding CancelCommand}" Margin="10 0 0 0" Style="{StaticResource ButtonSecondary}" Click="Close_Clicked"/>
         </WrapPanel>
     </Grid>

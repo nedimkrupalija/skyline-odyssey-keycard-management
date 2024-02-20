@@ -20,13 +20,13 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         public EmployeeListingViewModel()
         {
-            var users = _databaseContext.Users.ToList();
+        var users = _databaseContext.Users.ToList();
             _employeeListingItemViewModels = new ObservableCollection<EmployeeListingItemViewModel>();
             foreach(var user in users)
             {
                 _employeeListingItemViewModels.Add(new EmployeeListingItemViewModel(user));
             }
-           
+          
         }
     }
 }

@@ -34,6 +34,7 @@ namespace skyline_odyssey_keycard_management.Views
             DataContext = this;
 
             employeeDetailsForm.CancelClicked += EmployeeDetailsForm_CancelClicked;
+            employeeDetailsForm.SubmitClicked += EmployeeDetailsForm_SubmitClicked;
         }
 
         private void EmployeeDetailsForm_CancelClicked(object sender, EventArgs e)
@@ -41,6 +42,12 @@ namespace skyline_odyssey_keycard_management.Views
             // Close the Popup
             employeeDetailsPopup.IsOpen = false;
         }
+
+        private void EmployeeDetailsForm_SubmitClicked(object sender, EventArgs e)
+        {
+			// Close the Popup
+			employeeDetailsPopup.IsOpen = false;
+		}   
 
         private void Add_Clicked(object sender, RoutedEventArgs e)
         {
