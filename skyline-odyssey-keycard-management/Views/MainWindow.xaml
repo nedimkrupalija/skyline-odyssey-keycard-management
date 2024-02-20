@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:skyline_odyssey_keycard_management.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="440" Width="800">
-    <Grid Margin="25">
-        <views:AddEmpoyeeView />
+    <Grid>
+        <views:MainAdminView></views:MainAdminView>
     </Grid>
 </Window>
