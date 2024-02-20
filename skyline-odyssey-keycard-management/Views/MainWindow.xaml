@@ -9,7 +9,9 @@
         Title="MainWindow" Height="440" Width="800">
 
     <Grid Margin="25">
+
         <views:LoginView />
+
     </Grid>
 
 </Window>

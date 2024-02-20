@@ -23,6 +23,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
         private EmployeeListingItemViewModel _selectedEmployeeListingItemViewModel;
         public EmployeeListingItemViewModel SelectedEmployeeListingItemViewModel
         {
+
             get
             {
                 return _selectedEmployeeListingItemViewModel;
@@ -38,12 +39,13 @@ namespace skyline_odyssey_keycard_management.ViewModels
         {
             _selectedEmployeeStore = selectedEmployeeStore;
             var users = _databaseContext.Users.ToList();
+
             _employeeListingItemViewModels = new ObservableCollection<EmployeeListingItemViewModel>();
             foreach(var user in users)
             {
                 _employeeListingItemViewModels.Add(new EmployeeListingItemViewModel(user));
             }
-           
+          
         }
     }
 }

@@ -9,6 +9,9 @@ namespace skyline_odyssey_keycard_management.ViewModels
 {
     public class EmployeeDetailsFormViewModel : ViewModelBase
     {
+
+        
+    
         private string _firstName;
 
         public string FirstName
@@ -41,7 +44,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
         private string _role;
 
         public string Role
-        {
+        { 
             get
             {
                 return _role;
@@ -53,8 +56,25 @@ namespace skyline_odyssey_keycard_management.ViewModels
             }
         }
 
-        public bool CanSubmit => !string.IsNullOrEmpty(FirstName);
 
+        private int _keycard;
+        public int Keycard
+        {
+            get
+            {
+				return _keycard;
+			}
+            set
+            {
+                _keycard = value;
+                OnPropertyChanged(nameof(Keycard));
+            }
+        }
+
+
+
+        public bool CanSubmit => !string.IsNullOrEmpty(FirstName) && !string.IsNullOrEmpty(LastName) && !string.IsNullOrEmpty(Role);
+       
         public ICommand SubmitCommand { get; set; }
         public ICommand CancelCommand { get; set; }
     }
