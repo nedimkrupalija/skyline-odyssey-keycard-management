@@ -17,18 +17,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+<<<<<<< HEAD:skyline-odyssey-keycard-management/Components/AccessPointDetails.xaml.cs
+namespace skyline_odyssey_keycard_management.Components
+=======
 
 namespace skyline_odyssey_keycard_management.Views
+>>>>>>> main:skyline-odyssey-keycard-management/Views/LoginView.xaml.cs
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for AccessPointDetails.xaml
     /// </summary>
-    public partial class LoginView : Window
+    public partial class AccessPointDetails : UserControl
     {
-        public LoginView()
+        public AccessPointDetails()
         {
             InitializeComponent();
         }
+<<<<<<< HEAD:skyline-odyssey-keycard-management/Components/AccessPointDetails.xaml.cs
+=======
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
@@ -55,5 +61,6 @@ namespace skyline_odyssey_keycard_management.Views
                 MessageBoxResult result = MessageBox.Show("Please input valid credentials");
             }
         }
+>>>>>>> main:skyline-odyssey-keycard-management/Views/LoginView.xaml.cs
     }
 }

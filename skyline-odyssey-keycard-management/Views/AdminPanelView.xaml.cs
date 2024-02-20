@@ -1,4 +1,5 @@
-﻿using skyline_odyssey_keycard_management.ViewModels;
+﻿using skyline_odyssey_keycard_management.Components;
+using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace skyline_odyssey_keycard_management.Views
 {
     /// <summary>
@@ -27,10 +29,23 @@ namespace skyline_odyssey_keycard_management.Views
         public AdminPanelView()
         {
             InitializeComponent();
-            // Set the DataContext for components
             EmployeeListingViewModel = new EmployeeListingViewModel();
             EmployeeDetailsViewModel = new EmployeeDetailsViewModel();
             DataContext = this;
+
+            employeeDetailsForm.CancelClicked += EmployeeDetailsForm_CancelClicked;
         }
+
+        private void EmployeeDetailsForm_CancelClicked(object sender, EventArgs e)
+        {
+            // Close the Popup
+            employeeDetailsPopup.IsOpen = false;
+        }
+
+        private void Add_Clicked(object sender, RoutedEventArgs e)
+        {
+            employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
+        }
+
     }
 }

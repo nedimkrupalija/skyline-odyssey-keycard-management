@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Grid.IsSharedSizeScope="True">
+             d:DesignHeight="450" Background="white" d:DesignWidth="800">
+    <Border Padding="30 10" BorderThickness="1" BorderBrush="Black" CornerRadius="5">
+        
+        <Grid Grid.IsSharedSizeScope="True" Background="White" MinWidth="300" MaxHeight="400">
+            
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -15,7 +19,9 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="0 20 0 0">
+            <TextBlock Grid.Row="0" Text="Add new employee" FontSize="15" FontWeight="Bold" />
+
+            <Grid Grid.Row="1" Margin="0 20 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                 <ColumnDefinition Width="*" MaxWidth="250" />
@@ -26,7 +32,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="1" Margin="0 20 0 0">
+        <Grid Grid.Row="2" Margin="0 20 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                 <ColumnDefinition Width="*" MaxWidth="250" />
@@ -37,7 +43,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="2" Margin="0 20 0 0">
+        <Grid Grid.Row="3" Margin="0 20 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                 <ColumnDefinition Width="*" MaxWidth="250" />
@@ -48,20 +54,21 @@
 
         </Grid>
 
-        <Grid Grid.Row="3" Margin="0 20 0 0">
+        <Grid Grid.Row="4" Margin="0 20 0 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" MaxWidth="250"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Margin="0 0 20 0" Text="Assign Keycard" FontWeight="Bold" />
-            <CheckBox VerticalAlignment="Center" IsChecked="{Binding HasKeycard}" Grid.Column="1"/>
+            <ComboBox VerticalAlignment="Center" Grid.Column="1"/>
 
         </Grid>
 
-        <WrapPanel Grid.Row="4" Margin="0 20 0 0" HorizontalAlignment="Right">
-            <Button Content="Submit" Command="{Binding SubmitCommand}" IsEnabled="{Binding CanSubmit}"/>
-            <Button Content="Cancel" Command="{Binding CancelCommand}" Margin="10 0 0 0" Style="{StaticResource ButtonSecondary}"/>
+        <WrapPanel Grid.Row="5" Margin="0 20 0 0" HorizontalAlignment="Right">
+            <Button Content="Submit" Command="{Binding SubmitCommand}" IsEnabled="{Binding CanSubmit}" />
+            <Button Content="Cancel" Command="{Binding CancelCommand}" Margin="10 0 0 0" Style="{StaticResource ButtonSecondary}" Click="Close_Clicked"/>
         </WrapPanel>
     </Grid>
+    </Border>
 </UserControl>
