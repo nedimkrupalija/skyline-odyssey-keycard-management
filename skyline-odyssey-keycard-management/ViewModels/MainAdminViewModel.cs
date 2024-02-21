@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,7 +41,8 @@ namespace skyline_odyssey_keycard_management.ViewModels
 				}
 			}
 
-			
+			Firstname = LoginView.LoggedInUser.FirstName;
+			Lastname = LoginView.LoggedInUser.LastName;
 			UsageHistories = tempUsageHistories;
 			Users = new ObservableCollection<User>(tempUsers);
 		}
@@ -55,6 +57,28 @@ namespace skyline_odyssey_keycard_management.ViewModels
 			}
 		}
 
+
+		private string _firstname;
+		public string Firstname
+		{
+			get { return _firstname; }
+			set
+			{
+				_firstname = value;
+				OnPropertyChanged(nameof(Firstname));
+			}
+		}
+		
+		private string _lastname;	
+		public string Lastname
+		{
+			get { return _lastname; }
+			set
+			{
+				_lastname = value;
+				OnPropertyChanged(nameof(Lastname));
+			}
+		}
 
 		public ICollection<User> _users;
 		public ICollection<User> Users
