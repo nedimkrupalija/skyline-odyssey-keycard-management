@@ -7,14 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DataGrid x:Name="reportDataGrid" Grid.Row="0" Margin="0 20" ItemsSource="{Binding UsageReportsListingItemViewModels}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="AccessLevel" Binding="{Binding AccessLevel}" />
-                <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}" />
-                <DataGridTextColumn Header="Keycard" Binding="{Binding Keycard}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        
     </Grid>
 
 </UserControl>

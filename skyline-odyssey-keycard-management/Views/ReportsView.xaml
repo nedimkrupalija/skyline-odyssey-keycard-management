@@ -69,11 +69,16 @@
         </Grid>
 
         <Grid Grid.Row="4" Margin="0 5 0 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <components:UsageReportListing x:Name="usageReportListing" DataContext="{Binding UsageReportsListingViewModel}"/>
+            <ListView ItemsSource="{Binding UsageReportsListingItemViewModels}" DataContext="{Binding UsageReportsListingViewModel}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="AccessLevel" DisplayMemberBinding="{Binding AccessLevel}" />
+                        <GridViewColumn Header="Timestamp" DisplayMemberBinding="{Binding Timestamp}" />
+                        <GridViewColumn Header="Keycard" DisplayMemberBinding="{Binding Keycard}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
         </Grid>
 
