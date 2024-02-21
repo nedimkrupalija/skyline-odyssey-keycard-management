@@ -63,6 +63,10 @@ namespace skyline_odyssey_keycard_management.Components
         private void Close_Clicked(object sender, RoutedEventArgs e)
         {
             // Raise the CancelClicked event
+            FirstName.Text = "";
+            LastName.Text = "";
+            ComboBoxKeycard.Text = "";
+
             this.Hide();   
         }
 		
@@ -100,6 +104,9 @@ namespace skyline_odyssey_keycard_management.Components
 				_databaseContext.Users.Add(new User(FirstName.Text, LastName.Text, FirstName.Text+LastName.Text+userCount, FirstName.Text  + LastName.Text + userCount,userRole.Id, userRole,userKeycard.Id, userKeycard));
 				_databaseContext.SaveChanges();
 				MessageBoxResult result = MessageBox.Show( "User succesfully added");
+                FirstName.Text = "";
+                LastName.Text = "";
+                ComboBoxKeycard.Text = "";  
 				this.Hide();   
                 
 
