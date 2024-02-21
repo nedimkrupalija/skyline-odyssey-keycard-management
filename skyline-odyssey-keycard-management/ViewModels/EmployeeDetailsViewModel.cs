@@ -43,9 +43,11 @@ namespace skyline_odyssey_keycard_management.ViewModels
             OnPropertyChanged(nameof(Username));
             OnPropertyChanged(nameof(Role));
             OnPropertyChanged(nameof(Keycard));
+
             
             OnPropertyChanged(nameof(UsageHistories));
             
+
         }
     }
 }
