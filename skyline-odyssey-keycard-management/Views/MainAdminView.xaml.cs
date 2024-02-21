@@ -53,5 +53,12 @@ namespace skyline_odyssey_keycard_management.Views
 
             this.Content = reportsPanel;
         }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            LoginView loginView = new LoginView();
+            this.Content = loginView;
+        }
     }
 }
