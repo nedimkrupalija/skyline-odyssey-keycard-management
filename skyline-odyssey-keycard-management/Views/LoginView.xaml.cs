@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using skyline_odyssey_keycard_management.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +23,7 @@ namespace skyline_odyssey_keycard_management.Views
 	/// </summary>
 	public partial class LoginView : UserControl
 	{
+		public static User LoggedInUser = new User();
 		public LoginView()
 		{
 			InitializeComponent();
@@ -31,11 +34,14 @@ namespace skyline_odyssey_keycard_management.Views
 			DatabaseContext databaseContext = new DatabaseContext();
 			var username = UsernameTextBox.Text;
 			var password = PasswordTextBox.Password;
+			
 			var user = databaseContext.Users.Include(u => u.Role)
 				.FirstOrDefault(u => u.Username == username && u.Password == password);
+			
 			if (user != null)
 			{
-				if (user.Role.Name.Equals("Manager"))
+				
+				if (user.Role.Name.Equals("Manager")||user.Role.Name.Equals("CEO"))
 				{
 					MainAdminView mainAdminView = new MainAdminView();
 					this.Content = mainAdminView;
@@ -45,6 +51,7 @@ namespace skyline_odyssey_keycard_management.Views
 					EmployeePanelView empPanelView = new EmployeePanelView();
 					this.Content = empPanelView;
 				}
+				LoggedInUser = user;
 			}
 			else
 			{
