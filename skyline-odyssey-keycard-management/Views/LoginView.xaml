@@ -4,13 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views">
-    <Border Background="SkyBlue" Margin="10" CornerRadius="20">
-        <StackPanel Margin="20">
-            <Label Content="Login" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="18"/>
-            <Separator></Separator>
-            <Label Content="Username" Foreground="White" FontWeight="Bold"/>
+    <Border Background="White" Margin="10" CornerRadius="20">
+        <StackPanel Margin="20" MaxWidth="400">
+            <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="18"/>
+            <Label Content="Username" Foreground="Black" FontWeight="Bold"/>
             <TextBox x:Name="UsernameTextBox" Background="White" Foreground="Black" Padding="5"/>
-            <Label Content="Password" Foreground="White" FontWeight="Bold"/>
+            <Label Content="Password" Foreground="Black" FontWeight="Bold"/>
             <PasswordBox x:Name="PasswordTextBox" Background="White" Padding="5"/>
             <Button Content="Login" IsDefault="True" Width="120" Margin="15" FontWeight="Bold" Click="LoginButton_Click"/>
         </StackPanel>

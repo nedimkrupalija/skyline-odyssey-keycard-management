@@ -1,4 +1,5 @@
 ﻿using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.Store;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,10 +15,10 @@ namespace skyline_odyssey_keycard_management.ViewModels
         public AccessPointDetailsViewModel AccessPointDetailsViewModel { get; set; }
         public AccessPointListingViewModel AccessPointListingViewModel { get; set; }
 
-        public AccessPointViewModel()
+        public AccessPointViewModel(SelectedAccessPointStore selectedAccessPointStore)
         {
-            AccessPointDetailsViewModel = new AccessPointDetailsViewModel();
-            AccessPointListingViewModel = new AccessPointListingViewModel();
+            AccessPointDetailsViewModel = new AccessPointDetailsViewModel(selectedAccessPointStore);
+            AccessPointListingViewModel = new AccessPointListingViewModel(selectedAccessPointStore);
         }
     }
 }

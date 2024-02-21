@@ -16,6 +16,10 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         public string Name => UsageHistory.AccessPoint.Name;
 
+        public DateTime Timestamp => UsageHistory.Timestamp;
+
+        public int Keycard => UsageHistory.Keycard.Id;
+
         public UsageReportsListingItemViewModel(UsageHistory usageHistory)
         {
             UsageHistory = usageHistory;

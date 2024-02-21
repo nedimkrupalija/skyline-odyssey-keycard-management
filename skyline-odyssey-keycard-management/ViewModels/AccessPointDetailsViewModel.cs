@@ -1,12 +1,42 @@
-﻿using System;
+﻿using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.Store;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace skyline_odyssey_keycard_management.ViewModels
 {
-    public class AccessPointDetailsViewModel
+    public class AccessPointDetailsViewModel : ViewModelBase
     {
+        private readonly SelectedAccessPointStore _selectedAccessPointStore;
+        public bool HasSelectedAccessPoint => _selectedAccessPointStore.SelectedAccessPoint != null;
+
+        public string Name => _selectedAccessPointStore.SelectedAccessPoint?.Name?? "Unkown";
+        public AccessPoint AccessPoint => _selectedAccessPointStore.SelectedAccessPoint?.accessPoint ?? new AccessPoint();
+        public Keycard Keycard => _selectedAccessPointStore.SelectedAccessPoint?.keycard ?? new Keycard();
+
+        public AccessPointDetailsViewModel(SelectedAccessPointStore selectedAccessPointStore)
+        {
+            _selectedAccessPointStore = selectedAccessPointStore;
+
+            _selectedAccessPointStore.SelectedAccessPointChanged += _selectedAccessPointStore_SelectedAccessPointChanged; ;
+        }
+
+        private void _selectedAccessPointStore_SelectedAccessPointChanged()
+        {
+            OnPropertyChanged(nameof(HasSelectedAccessPoint));
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(AccessPoint));
+            OnPropertyChanged(nameof(Keycard));
+        }
+
+        protected override void Dispose()
+        {
+            _selectedAccessPointStore.SelectedAccessPointChanged -= _selectedAccessPointStore_SelectedAccessPointChanged; ;
+            base.Dispose();
+        }
     }
 }

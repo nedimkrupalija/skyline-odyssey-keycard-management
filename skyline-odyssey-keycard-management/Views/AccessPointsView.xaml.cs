@@ -1,4 +1,5 @@
-﻿using skyline_odyssey_keycard_management.ViewModels;
+﻿using skyline_odyssey_keycard_management.Store;
+using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,15 @@ namespace skyline_odyssey_keycard_management.Views
     /// </summary>
     public partial class AccessPointsView : UserControl
     {
+        private readonly SelectedAccessPointStore selectedAccessPointStore= new SelectedAccessPointStore();
         public AccessPointListingViewModel AccessPointListingViewModel { get; set; }
         public AccessPointDetailsViewModel AccessPointDetailsViewModel { get; set; }
 
         public AccessPointsView()
         {
             InitializeComponent();
-            AccessPointListingViewModel = new AccessPointListingViewModel();
-            AccessPointDetailsViewModel = new AccessPointDetailsViewModel();
+            AccessPointListingViewModel = new AccessPointListingViewModel(selectedAccessPointStore);
+            AccessPointDetailsViewModel = new AccessPointDetailsViewModel(selectedAccessPointStore);
             DataContext = this;
         }
 
