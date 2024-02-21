@@ -22,7 +22,7 @@
                     <TextBlock Grid.Row="0" Margin="0 0 10 10" Text="{Binding FirstName}" />
                     <TextBlock Grid.Row="0" Margin="0 0 0 10" Text="{Binding LastName}" />
                 </StackPanel>
-                
+
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -54,26 +54,50 @@
                     <TextBlock Grid.Column="1" Text="{Binding Keycard.IsAssigned}" />
                 </Grid>
 
-                <Grid Grid.Row="4">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                    </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Keycard usage" FontWeight="Bold"/>
-                    <TextBlock Grid.Column="1" Text="usage" />
-                </Grid>
+                <ListBox ItemsSource="{Binding UsageHistories}" Grid.Row="5" Name="lbEurInsuredType" HorizontalContentAlignment="Stretch">
+                    <ListBox.Template>
+                        <ControlTemplate>
+                            <DockPanel LastChildFill="True">
+                                <Grid DockPanel.Dock="Top" Height="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label FontWeight="Bold" Grid.Column="0" Margin="0,0,0,0">Access Point</Label>
+                                    <Label FontWeight="Bold" Grid.Column="1" Margin="0,0,0,0">Card ID</Label>
+                                    <Label FontWeight="Bold" Grid.Column="2" Margin="0,0,0,0">Timestamp</Label>
+                                    <Label FontWeight="Bold" Grid.Column="3" Margin="0,0,0,0">Entry</Label>
+                                </Grid>
+                                <ItemsPresenter></ItemsPresenter>
+                            </DockPanel>
+                        </ControlTemplate>
+                    </ListBox.Template>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding AccessPoint.Name}"></TextBlock>
+                                <TextBlock Text="{Binding CardId}" Grid.Column="1"></TextBlock>
+                                <TextBlock Text="{Binding Timestamp}" Grid.Column="2"></TextBlock>
+                                <TextBlock Text="{Binding IsEntry}" Grid.Column="3"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
-                <Grid Grid.Row="5" HorizontalAlignment="Right">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    
-                    <Button Grid.Column="0" Content="Assign new keycard" Command="{Binding AssignNewKeycardCommand}"></Button>
-                    <Button Grid.Column="1" Content="Deactivate keycard" Margin="5 0 0 0" Command="{Binding DeactivateKeycardCommand}"></Button>
-                </Grid>
-                
+
+
+
+
+
             </Grid>
         </Border>
     </Grid>

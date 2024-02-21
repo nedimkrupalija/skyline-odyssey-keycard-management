@@ -20,6 +20,7 @@ namespace skyline_odyssey_keycard_management.Components
     /// </summary>
     public partial class EmployeeDetails : UserControl
     {
+        
         public EmployeeDetails()
         {
             InitializeComponent();

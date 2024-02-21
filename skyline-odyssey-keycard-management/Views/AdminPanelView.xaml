@@ -46,9 +46,7 @@
             
         </Grid>
 
-        <Popup x:Name="employeeDetailsPopup" IsOpen="False" Placement="Center">
-            <components:EmployeeDetailsForm x:Name="employeeDetailsForm" />
-        </Popup>
+       
 
     </Grid>
 </UserControl>
