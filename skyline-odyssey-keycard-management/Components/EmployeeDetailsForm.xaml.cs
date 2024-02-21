@@ -1,4 +1,5 @@
 ﻿using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -43,7 +44,8 @@ namespace skyline_odyssey_keycard_management.Components
             var roleNames = new List<string>();
           foreach (var role in _databaseContext.Roles)
            {
-              ComboBoxRole.Items.Add(role.Name);
+               if(LoginView.LoggedInUser.Role.Id>role.Id)
+                ComboBoxRole.Items.Add(role.Name);
             }
            
 		}
