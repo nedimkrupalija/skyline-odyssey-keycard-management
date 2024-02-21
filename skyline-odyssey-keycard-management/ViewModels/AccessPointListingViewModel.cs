@@ -1,4 +1,5 @@
-﻿using skyline_odyssey_keycard_management.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using skyline_odyssey_keycard_management.Models;
 using skyline_odyssey_keycard_management.Store;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
         {
             _selectedAccessPointStore = selectedAccessPointStore;
 
-            var accesspoints = _databaseContext.AccessPoints.ToList();
+            var accesspoints = _databaseContext.AccessPoints.Include(u=>u.UsageHistories).ToList();
             _accessPointListingItemViewModels = new ObservableCollection<AccessPointListingItemViewModel>();
             foreach (var accesspoint in accesspoints)
             {

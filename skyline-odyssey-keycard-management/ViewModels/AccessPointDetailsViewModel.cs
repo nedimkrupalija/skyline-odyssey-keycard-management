@@ -2,6 +2,7 @@
 using skyline_odyssey_keycard_management.Store;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,9 @@ namespace skyline_odyssey_keycard_management.ViewModels
         public bool HasSelectedAccessPoint => _selectedAccessPointStore.SelectedAccessPoint != null;
 
         public string Name => _selectedAccessPointStore.SelectedAccessPoint?.Name?? "Unkown";
+        public int AccessLevel => _selectedAccessPointStore.SelectedAccessPoint?.AccessLevel ?? 0;
+
+        public ICollection<UsageHistory> UsageHistories => (_selectedAccessPointStore.SelectedAccessPoint?.UsageHistories ?? new ObservableCollection<UsageHistory>());
         public AccessPoint AccessPoint => _selectedAccessPointStore.SelectedAccessPoint?.accessPoint ?? new AccessPoint();
         public Keycard Keycard => _selectedAccessPointStore.SelectedAccessPoint?.keycard ?? new Keycard();
 
@@ -30,7 +34,10 @@ namespace skyline_odyssey_keycard_management.ViewModels
             OnPropertyChanged(nameof(HasSelectedAccessPoint));
             OnPropertyChanged(nameof(Name));
             OnPropertyChanged(nameof(AccessPoint));
+            OnPropertyChanged(nameof(AccessLevel));
             OnPropertyChanged(nameof(Keycard));
+            OnPropertyChanged(nameof(UsageHistories));
+            Trace.WriteLine(_selectedAccessPointStore.SelectedAccessPoint.UsageHistories.Count);
         }
 
         protected override void Dispose()

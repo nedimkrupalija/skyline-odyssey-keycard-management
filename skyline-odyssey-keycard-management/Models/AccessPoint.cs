@@ -30,5 +30,7 @@ namespace skyline_odyssey_keycard_management.Models
             AccessLevel = accessLevel;
             Name = name;
         }
+
+        public ICollection<UsageHistory> UsageHistories { get; set; }
     }
 }

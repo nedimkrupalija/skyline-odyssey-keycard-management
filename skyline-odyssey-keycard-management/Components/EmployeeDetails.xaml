@@ -54,49 +54,17 @@
                     <TextBlock Grid.Column="1" Text="{Binding Keycard.IsAssigned}" />
                 </Grid>
 
-
-                <ListBox ItemsSource="{Binding UsageHistories}" Grid.Row="5" Name="lbEurInsuredType" HorizontalContentAlignment="Stretch">
-                    <ListBox.Template>
-                        <ControlTemplate>
-                            <DockPanel LastChildFill="True">
-                                <Grid DockPanel.Dock="Top" Height="30">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label FontWeight="Bold" Grid.Column="0" Margin="0,0,0,0">Access Point</Label>
-                                    <Label FontWeight="Bold" Grid.Column="1" Margin="0,0,0,0">Card ID</Label>
-                                    <Label FontWeight="Bold" Grid.Column="2" Margin="0,0,0,0">Timestamp</Label>
-                                    <Label FontWeight="Bold" Grid.Column="3" Margin="0,0,0,0">Entry</Label>
-                                </Grid>
-                                <ItemsPresenter></ItemsPresenter>
-                            </DockPanel>
-                        </ControlTemplate>
-                    </ListBox.Template>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding AccessPoint.Name}"></TextBlock>
-                                <TextBlock Text="{Binding CardId}" Grid.Column="1"></TextBlock>
-                                <TextBlock Text="{Binding Timestamp}" Grid.Column="2"></TextBlock>
-                                <TextBlock Text="{Binding IsEntry}" Grid.Column="3"></TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-
-
-
-
-
+                <ListView Grid.Row="5" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="106.64" Header="Access Point Name" DisplayMemberBinding="{Binding AccessPoint.Name}"/>
+                            <GridViewColumn Width="106.64" Header="Card ID" DisplayMemberBinding="{Binding CardId}" />
+                            <GridViewColumn Width="106.64" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd.MM.yyyy}}" />
+                            <GridViewColumn Width="106.64" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm:ss}}" />
+                            <GridViewColumn Width="106.64" Header="Entered" DisplayMemberBinding="{Binding IsEntry}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
             </Grid>
         </Border>
