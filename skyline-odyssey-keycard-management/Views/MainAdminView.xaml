@@ -34,8 +34,10 @@
             <ColumnDefinition Width="0.2*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel  Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-            <Button Height="60" Width="150" Margin="5" Click="AccessPoints_Clicked">
+        <Button Grid.Column="2" Click="LogoutButton_Click" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" Width="120" Height="70" Content="Log out"/>
+        <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+               
+                <Button Height="60" Width="150" Margin="5" Click="AccessPoints_Clicked">
                 <TextBlock Text="Access Points" 
                HorizontalAlignment="Center" 
                VerticalAlignment="Center" FontSize="15"/>
