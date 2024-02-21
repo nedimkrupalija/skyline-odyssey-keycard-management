@@ -32,5 +32,8 @@ namespace skyline_odyssey_keycard_management.Models
 
 		public AccessPoint AccessPoint { get; set; }
 
+		public Boolean IsEntry { get; set; }
+
+
 	}
 }
