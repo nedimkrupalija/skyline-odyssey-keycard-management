@@ -20,7 +20,7 @@ namespace skyline_odyssey_keycard_management.Models
             CardId = cardId;
 			Timestamp = timestamp;
 			AccessPointId = accessPointId;
-			isEntry = IsEntry;
+			IsEntry	= isEntry;
 
         }
         [Key]
