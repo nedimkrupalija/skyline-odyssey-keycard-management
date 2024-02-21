@@ -63,7 +63,7 @@ namespace skyline_odyssey_keycard_management.Components
         private void Close_Clicked(object sender, RoutedEventArgs e)
         {
             // Raise the CancelClicked event
-            this.Close();   
+            this.Hide();   
         }
 		
 		private void Submit_Clicked(object sender, RoutedEventArgs e)
@@ -73,7 +73,10 @@ namespace skyline_odyssey_keycard_management.Components
             { 
             var roles = _databaseContext.Roles.ToList();
             var users = _databaseContext.Users.ToList();
-            string userCount = Convert.ToString(users.FindAll(u => u.FirstName == FirstName.Text && u.LastName == LastName.Text).Count+1);
+				if (!Regex.IsMatch(FirstName.Text, @"^[a-zA-Z]+$") || !Regex.IsMatch(LastName.Text, @"^[a-zA-Z]+$"))
+					throw new Exception();
+
+			string userCount = Convert.ToString(users.FindAll(u => u.FirstName == FirstName.Text && u.LastName == LastName.Text).Count+1);
             var userRole = new Role();
             foreach(var role in roles)
             {
@@ -92,14 +95,12 @@ namespace skyline_odyssey_keycard_management.Components
 					userKeycard = keycard;
                 }
             }
-		    if(!Regex.IsMatch(FirstName.Text, @"^[a-zA-Z]+$")||!Regex.IsMatch(LastName.Text, @"^[a-zA-Z]+$"))
-                    throw new Exception();
-
-
+                userKeycard.IsAssigned = true;
+                _databaseContext.Update(userKeycard);
 				_databaseContext.Users.Add(new User(FirstName.Text, LastName.Text, FirstName.Text+LastName.Text+userCount, FirstName.Text  + LastName.Text + userCount,userRole.Id, userRole,userKeycard.Id, userKeycard));
 				_databaseContext.SaveChanges();
 				MessageBoxResult result = MessageBox.Show( "User succesfully added");
-				this.Close();   
+				this.Hide();   
                 
 
 

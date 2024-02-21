@@ -46,7 +46,8 @@ namespace skyline_odyssey_keycard_management.Views
 
         private void EmployeeDetailsForm_CancelClicked(object sender, EventArgs e)
         {
-            employeeDetailsFormWindow.Close();
+           if(this.IsVisible)
+            employeeDetailsFormWindow.Hide();
         }
 
         private void EmployeeDetailsForm_SubmitClicked(object sender, EventArgs e)
@@ -58,7 +59,7 @@ namespace skyline_odyssey_keycard_management.Views
         private void Add_Clicked(object sender, RoutedEventArgs e)
         {
            
-            employeeDetailsFormWindow.ShowDialog();
+             employeeDetailsFormWindow.ShowDialog();
             //employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
         }
 
