@@ -40,7 +40,6 @@ namespace skyline_odyssey_keycard_management.ViewModels
             OnPropertyChanged(nameof(Role));
             OnPropertyChanged(nameof(Keycard));
 
-            Trace.WriteLine(_selectedEmployeeStore.SelectedEmployee.Role.Name);
         }
     }
 }
