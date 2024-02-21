@@ -14,6 +14,15 @@ namespace skyline_odyssey_keycard_management.Models
         {
             
         }
+
+        public UsageHistory(int cardId, DateTime timestamp, int accessPointId, Boolean isEntry)
+        {
+            CardId = cardId;
+			Timestamp = timestamp;
+			AccessPointId = accessPointId;
+			isEntry = IsEntry;
+
+        }
         [Key]
 		public int Id { get; set; }
 

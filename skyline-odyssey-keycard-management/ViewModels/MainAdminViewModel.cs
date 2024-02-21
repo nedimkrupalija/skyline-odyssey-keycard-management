@@ -1,4 +1,6 @@
-﻿using skyline_odyssey_keycard_management.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using skyline_odyssey_keycard_management.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,10 +18,43 @@ namespace skyline_odyssey_keycard_management.ViewModels
 		private DatabaseContext _databaseContext = new DatabaseContext();	
 		public MainAdminViewModel()
 		{
-			Trace.WriteLine("CONSTRUCTOR CALLED");
-			var tempUsers = _databaseContext.Users.ToList();	
+			
+			var tempUsers = _databaseContext.Users.Include(u=>u.UsageHistories).ToList();
+			tempUsers.RemoveAll(p => p.IsOnline == false);
+			var tempUsageHistories = new ObservableCollection<UsageHistory>();
+			foreach (var user in tempUsers)
+			{
+				Trace.WriteLine("ABC" + user.UsageHistories.Count + "ABC");
+				if (user.UsageHistories.Count > 0)
+				{
+					
+
+					for (int i = user.UsageHistories.Count - 1; i >= 0; i--)
+					{
+						if (user.UsageHistories.ElementAt(i).AccessPointId==5)
+						{
+							tempUsageHistories.Add(user.UsageHistories.ElementAt(i));
+							break;
+						}
+					}
+				}
+			}
+
+			
+			UsageHistories = tempUsageHistories;
 			Users = new ObservableCollection<User>(tempUsers);
 		}
+		private ICollection<UsageHistory> _usageHistories;	
+		public ICollection<UsageHistory> UsageHistories
+		{
+			get { return _usageHistories; }
+			set
+			{
+				_usageHistories = value;
+				OnPropertyChanged(nameof(UsageHistories));
+			}
+		}
+
 
 		public ICollection<User> _users;
 		public ICollection<User> Users
@@ -28,7 +63,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
 			set
 			{
 				_users = value;
-				Trace.WriteLine("818418481" + Users.Count);
+				
 				OnPropertyChanged(nameof(Users));
 			}
 		}		

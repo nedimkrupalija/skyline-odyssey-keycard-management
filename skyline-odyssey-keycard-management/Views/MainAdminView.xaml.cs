@@ -24,6 +24,8 @@ namespace skyline_odyssey_keycard_management.Views
         public MainAdminView()
         {
             InitializeComponent();
+            var viewModel = new MainAdminViewModel();
+            this.DataContext = viewModel;
         }
 
 
