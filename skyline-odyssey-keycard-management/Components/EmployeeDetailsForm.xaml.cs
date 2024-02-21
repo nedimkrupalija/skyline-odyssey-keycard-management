@@ -109,7 +109,14 @@ namespace skyline_odyssey_keycard_management.Components
                 var addedUser = new User(FirstName.Text, LastName.Text, FirstName.Text + LastName.Text + userCount, FirstName.Text + LastName.Text + userCount, userRole.Id, userRole, userKeycard.Id, userKeycard);
 				_databaseContext.Users.Add(addedUser);
 				_databaseContext.SaveChanges();
-				MessageBoxResult result = MessageBox.Show( "User succesfully added");
+				//MessageBoxResult result = MessageBox.Show( "User succesfully added");
+                string messageBoxText = "User succesfully added.";
+                string caption = "Success";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxResult result;
+
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
                 FirstName.Text = "";
                 LastName.Text = "";
                 ComboBoxKeycard.Text = "";
@@ -128,8 +135,15 @@ namespace skyline_odyssey_keycard_management.Components
 			}
 			catch(Exception ex)
             {
-				MessageBoxResult result = MessageBox.Show( "Please input valid credentials");
-			}
+                //MessageBoxResult result = MessageBox.Show( "Please input valid credentials");
+                string messageBoxText = "Please input valid credentials.";
+                string caption = "Warning";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result;
+
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
+            }
 			
 			
 

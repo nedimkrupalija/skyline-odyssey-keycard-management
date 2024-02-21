@@ -55,8 +55,14 @@ namespace skyline_odyssey_keycard_management.Views
 			}
 			else
 			{
-				MessageBoxResult result = MessageBox.Show("Please input valid credentials");
-			}
+                string messageBoxText = "Please input valid credentials.";
+                string caption = "Warning";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result;
+
+                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
+            }
 		}
 	}
 }
