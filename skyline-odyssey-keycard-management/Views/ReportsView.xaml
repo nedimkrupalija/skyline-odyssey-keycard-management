@@ -53,8 +53,8 @@
                 <ColumnDefinition Width="*" MaxWidth="250"/>
             </Grid.ColumnDefinitions>
 
-            <DatePicker x:Name="startDatePicker" Grid.Column="0" Margin="0 0 10 0"/>
-            <DatePicker x:Name="endDatePicker" Grid.Column="1" />
+            <DatePicker x:Name="startDatePicker" Grid.Column="0" SelectedDate="{Binding EndDate}" Margin="0 0 10 0"/>
+            <DatePicker x:Name="endDatePicker" Grid.Column="1" SelectedDate="{Binding StartDate}"/>
 
         </Grid>
 
@@ -64,7 +64,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="Generate Report" Margin="5"/>
+            <Button Content="Generate Report" Margin="5" Click="FilterButton_Click"/>
 
         </Grid>
 
