@@ -24,7 +24,8 @@ namespace skyline_odyssey_keycard_management.Views
     /// </summary>
     public partial class AdminPanelView : UserControl
     {
-        private readonly SelectedEmployeeStore selectedEmployeeStore = new SelectedEmployeeStore();
+        private Window employeeDetailsFormWindow = new EmployeeDetailsForm();
+		private readonly SelectedEmployeeStore selectedEmployeeStore = new SelectedEmployeeStore();
         public EmployeeListingViewModel EmployeeListingViewModel { get; set; }
         public EmployeeDetailsViewModel EmployeeDetailsViewModel { get; set; }
 
@@ -38,32 +39,35 @@ namespace skyline_odyssey_keycard_management.Views
             DataContext = this;
 
 
-            employeeDetailsForm.CancelClicked += EmployeeDetailsForm_CancelClicked;
-            employeeDetailsForm.SubmitClicked += EmployeeDetailsForm_SubmitClicked;
+           // employeeDetailsForm.CancelClicked += EmployeeDetailsForm_CancelClicked;
+           // employeeDetailsForm.SubmitClicked += EmployeeDetailsForm_SubmitClicked;
         }
 
 
         private void EmployeeDetailsForm_CancelClicked(object sender, EventArgs e)
         {
-            // Close the Popup
-            employeeDetailsPopup.IsOpen = false;
+            employeeDetailsFormWindow.Close();
         }
 
         private void EmployeeDetailsForm_SubmitClicked(object sender, EventArgs e)
         {
             // Close the Popup
-            employeeDetailsPopup.IsOpen = false;
+          //  employeeDetailsPopup.IsOpen = false;
         }
 
         private void Add_Clicked(object sender, RoutedEventArgs e)
         {
-            employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
+           
+            employeeDetailsFormWindow.ShowDialog();
+            //employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
         }
 
         private void BackButton_Clicked(object sender, RoutedEventArgs e) { 
      
             this.Content = new MainAdminView();
         }
+
+         
 
     }
 }
