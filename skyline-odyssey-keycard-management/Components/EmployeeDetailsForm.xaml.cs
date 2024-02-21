@@ -1,7 +1,11 @@
-﻿using skyline_odyssey_keycard_management.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.Store;
+using skyline_odyssey_keycard_management.ViewModels;
 using skyline_odyssey_keycard_management.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -27,6 +31,7 @@ namespace skyline_odyssey_keycard_management.Components
     /// </summary>
     public partial class EmployeeDetailsForm : Window
     {
+        public static User AddedUser = new User();
        private DatabaseContext _databaseContext = new DatabaseContext();
         public event EventHandler CancelClicked;
         public event EventHandler SubmitClicked;    
@@ -101,12 +106,19 @@ namespace skyline_odyssey_keycard_management.Components
             }
                 userKeycard.IsAssigned = true;
                 _databaseContext.Update(userKeycard);
-				_databaseContext.Users.Add(new User(FirstName.Text, LastName.Text, FirstName.Text+LastName.Text+userCount, FirstName.Text  + LastName.Text + userCount,userRole.Id, userRole,userKeycard.Id, userKeycard));
+                var addedUser = new User(FirstName.Text, LastName.Text, FirstName.Text + LastName.Text + userCount, FirstName.Text + LastName.Text + userCount, userRole.Id, userRole, userKeycard.Id, userKeycard);
+				_databaseContext.Users.Add(addedUser);
 				_databaseContext.SaveChanges();
 				MessageBoxResult result = MessageBox.Show( "User succesfully added");
                 FirstName.Text = "";
                 LastName.Text = "";
-                ComboBoxKeycard.Text = "";  
+                ComboBoxKeycard.Text = "";
+
+
+				var updatedUsers = _databaseContext.Users.Include(u => u.Keycard).Include(u => u.Role).ToList();
+				
+				
+
 				this.Hide();   
                 
 

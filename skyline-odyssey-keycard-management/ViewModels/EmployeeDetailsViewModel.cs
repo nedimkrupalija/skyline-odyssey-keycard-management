@@ -2,6 +2,7 @@
 using skyline_odyssey_keycard_management.Store;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,9 @@ namespace skyline_odyssey_keycard_management.ViewModels
         public string Username => _selectedEmployeeStore.SelectedEmployee?.Username ?? "Unkown";
         public Role Role => _selectedEmployeeStore.SelectedEmployee?.Role ?? new Role();
         public Keycard Keycard => _selectedEmployeeStore.SelectedEmployee?.Keycard ?? new Keycard();
+
+       public ICollection<UsageHistory> UsageHistories => (_selectedEmployeeStore.SelectedEmployee?.UsageHistories?? new ObservableCollection<UsageHistory>());
+        
 
         public EmployeeDetailsViewModel(SelectedEmployeeStore selectedEmployeeStore)
         {
@@ -39,8 +43,9 @@ namespace skyline_odyssey_keycard_management.ViewModels
             OnPropertyChanged(nameof(Username));
             OnPropertyChanged(nameof(Role));
             OnPropertyChanged(nameof(Keycard));
-
-            Trace.WriteLine(_selectedEmployeeStore.SelectedEmployee.Role.Name);
+            
+            OnPropertyChanged(nameof(UsageHistories));
+            
         }
     }
 }
