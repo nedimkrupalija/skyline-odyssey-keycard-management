@@ -61,15 +61,21 @@
         <Grid Grid.Row="3" Margin="0 5 0 0" HorizontalAlignment="Right">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MaxWidth="250" />
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Button Content="Generate Report" Margin="5"/>
 
         </Grid>
 
+        <Grid Grid.Row="4" Margin="0 5 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <DataGrid x:Name="reportDataGrid" Grid.Row="4" AutoGenerateColumns="True" Margin="0 20"/>
+            <components:UsageReportListing x:Name="usageReportListing" DataContext="{Binding UsageReportsListingViewModel}"/>
 
+        </Grid>
 
     </Grid>
 </UserControl>

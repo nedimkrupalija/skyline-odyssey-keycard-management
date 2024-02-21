@@ -9,7 +9,10 @@ namespace skyline_odyssey_keycard_management.Models
 {
 	public class AccessPoint
 	{
-		[Key]
+        internal AccessPoint? accessPoint;
+        internal Keycard? keycard;
+
+        [Key]
 		public int Id { get; set; }
 
 		public int AccessLevel { get; set; }

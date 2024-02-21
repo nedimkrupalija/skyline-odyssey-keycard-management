@@ -1,4 +1,5 @@
-﻿using System;
+﻿using skyline_odyssey_keycard_management.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace skyline_odyssey_keycard_management.Views
     /// </summary>
     public partial class ReportsView : UserControl
     {
+
+        public UsageReportsListingViewModel UsageReportsListingViewModel { get; set; }
         public ReportsView()
         {
             InitializeComponent();
+
+            UsageReportsListingViewModel = new UsageReportsListingViewModel();
+            DataContext = this;
         }
 
         private void BackButton_Clicked(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,12 +19,15 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         public UsageReportsListingViewModel()
         {
-            var usagereports = _databaseContext.UsageHistories.ToList();
+            var usagereports = _databaseContext.UsageHistories.Include(u => u.AccessPoint).Include(u => u.Keycard).ToList();
             _usageReportsListingItemViewModels = new ObservableCollection<UsageReportsListingItemViewModel>();
             foreach (var usagereport in usagereports)
             {
                 _usageReportsListingItemViewModels.Add(new UsageReportsListingItemViewModel(usagereport));
+
+                
             }
+
 
         }
     }
