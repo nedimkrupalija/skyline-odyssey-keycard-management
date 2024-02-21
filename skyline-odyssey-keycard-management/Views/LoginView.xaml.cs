@@ -35,12 +35,19 @@ namespace skyline_odyssey_keycard_management.Views
 			var username = UsernameTextBox.Text;
 			var password = PasswordTextBox.Password;
 			
-			var user = databaseContext.Users.Include(u => u.Role)
+			var user = databaseContext.Users.Include(u => u.Role).Include(u=>u.Keycard).Include(u=>u.UsageHistories)
 				.FirstOrDefault(u => u.Username == username && u.Password == password);
 			
 			if (user != null)
 			{
+				user.IsOnline = true;
+				var mainAccessPoint = databaseContext.AccessPoints.FirstOrDefault(a => a.Name == "Main enterance");
 				
+				var newUsageHistory = new UsageHistory(user.Keycard.Id, DateTime.Now, mainAccessPoint.Id, true);
+				user.UsageHistories.Add(newUsageHistory);
+		
+				databaseContext.SaveChanges();
+				LoggedInUser = user;
 				if (user.Role.Name.Equals("Manager")||user.Role.Name.Equals("CEO"))
 				{
 					MainAdminView mainAdminView = new MainAdminView();
@@ -51,7 +58,7 @@ namespace skyline_odyssey_keycard_management.Views
 					EmployeePanelView empPanelView = new EmployeePanelView();
 					this.Content = empPanelView;
 				}
-				LoggedInUser = user;
+				
 			}
 			else
 			{

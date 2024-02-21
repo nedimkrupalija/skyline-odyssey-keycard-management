@@ -1,6 +1,8 @@
-﻿using skyline_odyssey_keycard_management.ViewModels;
+﻿using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +23,13 @@ namespace skyline_odyssey_keycard_management.Views
     /// </summary>
     public partial class MainAdminView : UserControl
     {
+        private DatabaseContext _databaseContext;
         public MainAdminView()
         {
             InitializeComponent();
+            var viewModel = new MainAdminViewModel();
+            this.DataContext = viewModel;
+            _databaseContext = new DatabaseContext();
         }
 
 
@@ -58,6 +64,13 @@ namespace skyline_odyssey_keycard_management.Views
         {
 
             LoginView loginView = new LoginView();
+            LoginView.LoggedInUser.IsOnline = false;
+
+            LoginView.LoggedInUser.UsageHistories.Add(new UsageHistory(LoginView.LoggedInUser.Keycard.Id, DateTime.Now, 5,false)); 
+
+            _databaseContext.Update(LoginView.LoggedInUser);
+            
+            _databaseContext.SaveChanges();
             this.Content = loginView;
         }
     }
