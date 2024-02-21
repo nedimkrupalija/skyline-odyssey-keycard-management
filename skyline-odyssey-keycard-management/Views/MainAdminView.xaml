@@ -20,6 +20,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid Background="White">
+        <Button Click="LogoutButton_Click" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" Width="120" Height="70" Content="Log out"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Button Height="60" Width="150" Margin="5" Click="AccessPoints_Clicked">
                 <TextBlock Text="Access Points" 
