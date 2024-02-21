@@ -60,6 +60,7 @@ namespace skyline_odyssey_keycard_management.Models
 
 		public Keycard Keycard { get; set; }
 		
+		public Boolean IsOnline { get; set; }	
 
 		public ICollection<UsageHistory> UsageHistories { get; set; }	
 

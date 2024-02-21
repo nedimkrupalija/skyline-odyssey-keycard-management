@@ -5,10 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
              xmlns:viewmodels="clr-namespace:skyline_odyssey_keycard_management.ViewModels"
-             xmlns:views="clr-namespace:skyline_odyssey_keycard_management.Views"
+             xmlns:views="clr-namespace:skyline_odyssey_keycard_management.Views" d:DataContext="{d:DesignInstance Type=viewmodels:MainAdminViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <DataTemplate x:Name="mainAdminView" DataType="{x:Type viewmodels:MainAdminViewModel}">
+            <views:MainAdminView DataContext="{Binding}"></views:MainAdminView>
+        </DataTemplate>
         <DataTemplate x:Name="employeesView" DataType="{x:Type viewmodels:EmployeesViewModel}">
             <views:AdminPanelView DataContext="{Binding}"></views:AdminPanelView>
         </DataTemplate>
@@ -20,7 +23,18 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid Background="White">
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel  Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Button Height="60" Width="150" Margin="5" Click="AccessPoints_Clicked">
                 <TextBlock Text="Access Points" 
                HorizontalAlignment="Center" 
@@ -37,5 +51,37 @@
                 VerticalAlignment="Center" FontSize="15"/>
             </Button>
         </StackPanel>
+
+        <ListBox Grid.Row="1" ItemsSource="{Binding Users}"  Name="lbEurInsuredType" HorizontalContentAlignment="Stretch">
+            <ListBox.Template>
+                <ControlTemplate>
+                    <DockPanel LastChildFill="True">
+                        <Grid DockPanel.Dock="Top" Height="30">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label FontWeight="Bold" Grid.Column="0" Margin="0,0,0,0">Users in office</Label>
+                            <Label FontWeight="Bold" Grid.Column="1" Margin="0,0,0,0">Time of entry</Label>
+                        </Grid>
+                        <ItemsPresenter></ItemsPresenter>
+                    </DockPanel>
+                </ControlTemplate>
+            </ListBox.Template>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Username}"></TextBlock>
+                        <TextBlock Grid.Column="0" Text="{Binding Timestamp}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
     </Grid>
 </UserControl>
