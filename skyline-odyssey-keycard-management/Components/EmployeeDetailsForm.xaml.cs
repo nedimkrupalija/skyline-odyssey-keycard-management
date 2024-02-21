@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Automation.Peers;
@@ -62,17 +63,7 @@ namespace skyline_odyssey_keycard_management.Components
             // Raise the CancelClicked event
             this.Close();   
         }
-		private T FindParent<T>(DependencyObject child) where T : DependencyObject
-		{
-			// Rekurzivna metoda za pronalaženje roditeljskog elementa određenog tipa
-			DependencyObject parentObject = VisualTreeHelper.GetParent(child);
-			if (parentObject == null)
-				return null;
-			T parent = parentObject as T;
-			return parent ?? FindParent<T>(parentObject);
-		}
-
-
+		
 		private void Submit_Clicked(object sender, RoutedEventArgs e)
         {
             
@@ -99,10 +90,11 @@ namespace skyline_odyssey_keycard_management.Components
 					userKeycard = keycard;
                 }
             }
+		    if(!Regex.IsMatch(FirstName.Text, @"^[a-zA-Z]+$")||!Regex.IsMatch(LastName.Text, @"^[a-zA-Z]+$"))
+                    throw new Exception();
 
 
-            
-                _databaseContext.Users.Add(new User(FirstName.Text, LastName.Text, FirstName.Text+LastName.Text+userCount, FirstName.Text  + LastName.Text + userCount,userRole.Id, userRole,userKeycard.Id, userKeycard));
+				_databaseContext.Users.Add(new User(FirstName.Text, LastName.Text, FirstName.Text+LastName.Text+userCount, FirstName.Text  + LastName.Text + userCount,userRole.Id, userRole,userKeycard.Id, userKeycard));
 				_databaseContext.SaveChanges();
 				MessageBoxResult result = MessageBox.Show( "User succesfully added");
 				this.Close();   
