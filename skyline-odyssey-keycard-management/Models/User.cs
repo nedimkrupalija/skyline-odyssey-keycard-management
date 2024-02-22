@@ -62,7 +62,6 @@ namespace skyline_odyssey_keycard_management.Models
 		public Keycard Keycard { get; set; }
 		
 		public Boolean IsOnline { get; set; }	
-
 		public string Email { get; set; }
 
 
