@@ -23,10 +23,11 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         private string _nameOfUser;
 
-        public string NameOfUser { 
-            get 
+        public string NameOfUser
+        {
+            get
             {
-                return _nameOfUser;  
+                return _nameOfUser;
             }
             set
             {
@@ -122,10 +123,10 @@ namespace skyline_odyssey_keycard_management.ViewModels
             SelectedStartHour = "7";
             SelectedEndHour = "18";
             DatabaseContext db = new DatabaseContext();
-            UsageHistoryList = db.UsageHistories.Include(u=>u.AccessPoint).Include(u=>u.Keycard).ThenInclude(u=>u.User).Where(u=> (SelectedStartHour == null || u.Timestamp.Hour >= int.Parse(SelectedStartHour))
+            UsageHistoryList = db.UsageHistories.Include(u => u.AccessPoint).Include(u => u.Keycard).ThenInclude(u => u.User).Where(u => (SelectedStartHour == null || u.Timestamp.Hour >= int.Parse(SelectedStartHour))
                                     && (SelectedEndHour == null || u.Timestamp.Hour < int.Parse(SelectedEndHour))).ToList();
         }
-        public ICommand GenerateReportCommand => new RelayCommand(GenerateReport,CanGenerateReport);
+        public ICommand GenerateReportCommand => new RelayCommand(GenerateReport, CanGenerateReport);
 
         private void GenerateReport(object? parameter)
         {
@@ -133,24 +134,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
             {
                 using (var dbContext = new DatabaseContext())
                 {
-                    string firstName;
-                    string lastName;
-
-                    if (NameFilter.Contains(" "))
-                    {
-                        var filters = NameFilter.Split(' ');
-                        firstName = filters[0];
-                        lastName = filters[1];  
-
-                    }
-                    else
-                    {
-                        firstName = NameFilter;
-                        lastName = NameFilter;
-                    }
-
-                    Trace.WriteLine(firstName + " " + lastName);
-                    var filteredReports = dbContext.UsageHistories.Include(s=>s.AccessPoint).Include(u => u.User)
+                    var toBeFilteredReports = dbContext.UsageHistories.Include(s => s.AccessPoint).Include(u => u.User)
                         .Where(u => u.Timestamp.Date >= StartDate.Date
                                     && u.Timestamp.Date <= EndDate.Date
                                     && (SelectedStartHour == null || u.Timestamp.Hour >= int.Parse(SelectedStartHour))
@@ -158,19 +142,24 @@ namespace skyline_odyssey_keycard_management.ViewModels
                                     )
                         .ToList();
 
+                    var filteredReports = new List<UsageHistory>();
+
                     if (!NameFilter.IsNullOrEmpty())
                     {
-                       foreach (var filter in filteredReports)
+                        foreach (var filter in toBeFilteredReports)
                         {
                             var filteredName = filter.User.FirstName + " " + filter.User.LastName;
-                            if(!filteredName.Contains(NameFilter))
+                            Trace.WriteLine(filteredName);
+
+                            if (filteredName.Contains(NameFilter.Trim()))
                             {
-                                filteredReports.Remove(filter);
+                                filteredReports.Add(filter);
                             }
                         }
                     }
 
-                    UsageHistoryList = filteredReports;
+
+                    UsageHistoryList = NameFilter.IsNullOrEmpty() ? toBeFilteredReports : filteredReports;
                 }
             }
             catch (Exception ex)
@@ -178,7 +167,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
                 MessageBox.Show($"Error generating report: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            
+
         }
 
         private bool CanGenerateReport(object? sender)

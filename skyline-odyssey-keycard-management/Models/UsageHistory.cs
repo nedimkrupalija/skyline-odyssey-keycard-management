@@ -32,7 +32,6 @@ namespace skyline_odyssey_keycard_management.Models
 		public int CardId { get; set; }
 
 		public Keycard Keycard { get; set; }	
-		public User User { get; set; }
 
 		public DateTime Timestamp { get; set; }
 
