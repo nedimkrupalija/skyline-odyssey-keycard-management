@@ -68,7 +68,14 @@ namespace skyline_odyssey_keycard_management.Views
             this.Content = new MainAdminView();
         }
 
-         
+        private void Edit_Clicked(object sender, RoutedEventArgs e)
+        {
+
+            //employeeDetailsFormWindow.ShowDialog();
+            //employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
+        }
+
+
 
     }
 }

@@ -7,6 +7,57 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Grid.Column="1" FontSize="25" Text="Employee panel" Margin="0 0 0 5"/>
+
+            <WrapPanel Grid.Column="2" HorizontalAlignment="Right">
+                <Button Grid.Column="0" Margin="0 0 5 0" Content="Edit" />
+                <Button Grid.Column="1" Content="Log out" />
+            </WrapPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0 5 0 20">
+            <ListView>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="80"/>
+                        <GridViewColumn Header="Timestamp" Width="80"/>
+                        <GridViewColumn Header="Keycard" Width="80" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Enter room" HorizontalAlignment="Left" />
+
+            <WrapPanel HorizontalAlignment="Right">
+                <Button Grid.Column="0" Margin="0 0 5 0" Content="Request access" HorizontalAlignment="Right"/>
+                <Button Grid.Column="1" Content="Request keycard" />
+            </WrapPanel>
+        </Grid>
+
+
+
     </Grid>
 </UserControl>
