@@ -39,7 +39,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
         {
             _selectedAccessPointStore = selectedAccessPointStore;
 
-            var accesspoints = _databaseContext.AccessPoints.Include(u=>u.UsageHistories).ToList();
+            var accesspoints = _databaseContext.AccessPoints.Include(u=>u.UsageHistories).ThenInclude(u=>u.User).ToList();
             _accessPointListingItemViewModels = new ObservableCollection<AccessPointListingItemViewModel>();
             foreach (var accesspoint in accesspoints)
             {

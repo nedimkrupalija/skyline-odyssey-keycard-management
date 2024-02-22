@@ -51,14 +51,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
             _selectedEmployeeStore.SelectedEmployeeChanged += SelectedEmployeeStore_SelectedEmployeeChanged;
 
-            if(_selectedEmployeeStore.SelectedEmployee?.Keycard.IsAssigned == false)
-            {
-                KeycardIsAssigned = "Unassigned";
-            }    
-            else
-            {
-				KeycardIsAssigned = "Assigned";
-			}
+            
         }
 
         protected override void Dispose()
