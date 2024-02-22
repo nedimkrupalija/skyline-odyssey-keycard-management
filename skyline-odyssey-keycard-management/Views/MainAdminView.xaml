@@ -29,7 +29,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*"/>
+            
 
         </Grid.RowDefinitions>
 
@@ -91,9 +91,9 @@
 
 
 
-        <DVC:Chart x:Name="columnChart" Grid.Column="3" Grid.Row="1" Width="350" Title="Last week's report" HorizontalAlignment="Right" Margin="0 0 25 0">
+        <DVC:Chart x:Name="columnChart" Grid.Column="3" Grid.Row="1" Width="450" Title="Last week's report" HorizontalAlignment="Right" Margin="0 0 25 0">
             <DVC:Chart.Series>
-                <DVC:ColumnSeries Title="No. of users" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+                <DVC:ColumnSeries  Title="No. of users" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
                     
                 </DVC:ColumnSeries>
             </DVC:Chart.Series>
