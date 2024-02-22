@@ -30,11 +30,11 @@ namespace skyline_odyssey_keycard_management.ViewModels
             {
 				if (_selectedEmployeeStore.SelectedEmployee?.Keycard.IsAssigned == true)
                 {
-					_keycardIsAssigned = "Yes";
+					_keycardIsAssigned = "Assigned";
 				}
 				else
                 {
-					_keycardIsAssigned = "No";
+					_keycardIsAssigned = "Unassigned";
 				}
 				return _keycardIsAssigned;
 			}
@@ -53,11 +53,11 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
             if(_selectedEmployeeStore.SelectedEmployee?.Keycard.IsAssigned == false)
             {
-                KeycardIsAssigned = "No";
+                KeycardIsAssigned = "Unassigned";
             }    
             else
             {
-				KeycardIsAssigned = "Yes";
+				KeycardIsAssigned = "Assigned";
 			}
         }
 
