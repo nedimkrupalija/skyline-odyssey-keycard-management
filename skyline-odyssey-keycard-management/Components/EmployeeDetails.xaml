@@ -60,7 +60,7 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Keycard assigned" FontWeight="Bold"/>
+                    <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Keycard status" FontWeight="Bold"/>
                     <TextBlock Grid.Column="1" Text="{Binding KeycardIsAssigned}" />
                 </Grid>
 
