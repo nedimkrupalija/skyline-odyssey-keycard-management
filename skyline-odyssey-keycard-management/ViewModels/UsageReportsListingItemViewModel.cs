@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace skyline_odyssey_keycard_management.ViewModels
 {
-    public class UsageReportsListingItemViewModel
+    public class UsageReportsListingItemViewModel : ViewModelBase
     {
 
         public UsageHistory UsageHistory { get; set; }

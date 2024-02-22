@@ -4,11 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Components"
+             xmlns:converter="clr-namespace:skyline_odyssey_keycard_management.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converter:FullNameConverter x:Key="FullNameConverter"/>
+    </UserControl.Resources>
     <Grid Background="White">
         <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="3" Padding="20">
-            <Grid>
+            <Grid Grid.IsSharedSizeScope="True">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -17,16 +21,22 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Grid.Row="0" Margin="0 0 10 10" Text="{Binding FirstName}" />
-                    <TextBlock Grid.Row="0" Margin="0 0 0 10" Text="{Binding LastName}" />
-                </StackPanel>
+                
+                <Grid Grid.Row="0">
+                    <TextBlock Grid.Row="0" Margin="0 0 10 10">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource FullNameConverter}">
+                                <Binding Path="FirstName"/>
+                                <Binding Path="LastName"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
 
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
@@ -36,17 +46,17 @@
 
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Employee role" FontWeight="Bold"/>
+                    <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Role" FontWeight="Bold"/>
                     <TextBlock Grid.Column="1" Text="{Binding Role.Name}" />
                 </Grid>
 
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 

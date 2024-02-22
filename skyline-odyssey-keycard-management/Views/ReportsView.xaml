@@ -20,7 +20,6 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -37,49 +36,64 @@
 
         <Grid Grid.Row="1" Margin="0 20 0 0" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MaxWidth="250" />
-                <ColumnDefinition Width="*" MaxWidth="250"/>
-
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <components:TimePickerControl Margin="0 0 10 0" Grid.Column="0" />
-            <components:TimePickerControl Grid.Column="1" />
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Filter by time: " HorizontalAlignment="Center" Margin="0 0 0 5" />
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="0 0 10 0" Orientation="Horizontal">
+                        <TextBlock Text="From " Margin="0 0 10 0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="startHours" Width="50" ItemsSource="{Binding Hours}" />
+                        <Label Content=":"/>
+                        <ComboBox x:Name="startMinutes" Width="50" ItemsSource="{Binding Minutes}"/>
+                    </StackPanel>
 
+                    <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                        <TextBlock Text="to " Margin="0 0 10 0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="endHours" Width="50" ItemsSource="{Binding Hours}" />
+                        <Label Content=":"/>
+                        <ComboBox x:Name="endMinutes" Width="50" ItemsSource="{Binding Minutes}" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Filter by date:" HorizontalAlignment="Center" Margin="0 0 0 5" />
+                <StackPanel Orientation="Horizontal" >
+                    <DatePicker x:Name="startDatePicker" SelectedDate="{Binding StartDate, Mode=TwoWay}" Margin="10 0 10 0"/>
+                    <DatePicker x:Name="endDatePicker" SelectedDate="{Binding EndDate, Mode=TwoWay}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="20 0 0 0">
+                <TextBlock Text="Filter by name:" HorizontalAlignment="Center" Margin="0 0 0 5" />
+                <TextBox  x:Name="nameInput"  Width="150" Height="25" />
+            </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="0 20 0 0" HorizontalAlignment="Center">
+        <Grid Grid.Row="2" Margin="0 5 0 0" HorizontalAlignment="Right">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MaxWidth="250" />
-                <ColumnDefinition Width="*" MaxWidth="250"/>
-            </Grid.ColumnDefinitions>
-
-            <DatePicker x:Name="startDatePicker" Grid.Column="0" SelectedDate="{Binding EndDate}" Margin="0 0 10 0"/>
-            <DatePicker x:Name="endDatePicker" Grid.Column="1" SelectedDate="{Binding StartDate}"/>
-
-        </Grid>
-
-        <Grid Grid.Row="3" Margin="0 5 0 0" HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" MaxWidth="250" />
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
             <Button Content="Generate Report" Margin="5" Click="FilterButton_Click"/>
 
         </Grid>
 
-        <Grid Grid.Row="4" Margin="0 5 0 0">
+        <Grid Grid.Row="3" Margin="0 5 0 0">
             <ListView ItemsSource="{Binding UsageReportsListingItemViewModels}" DataContext="{Binding UsageReportsListingViewModel}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="AccessLevel" DisplayMemberBinding="{Binding AccessLevel}" />
-                        <GridViewColumn Header="Timestamp" DisplayMemberBinding="{Binding Timestamp}" />
-                        <GridViewColumn Header="Keycard" DisplayMemberBinding="{Binding Keycard}" />
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="100" />
+                        <GridViewColumn Header="AccessLevel" DisplayMemberBinding="{Binding AccessLevel}" Width="100" />
+                        <GridViewColumn Header="Timestamp" DisplayMemberBinding="{Binding Timestamp}" Width="100"/>
+                        <GridViewColumn Header="Keycard" DisplayMemberBinding="{Binding Keycard}" Width="100" />
                     </GridView>
                 </ListView.View>
             </ListView>
-
         </Grid>
 
     </Grid>
