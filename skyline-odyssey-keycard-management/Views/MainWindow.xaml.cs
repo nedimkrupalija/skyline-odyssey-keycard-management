@@ -29,7 +29,7 @@ namespace skyline_odyssey_keycard_management
                 var user = LoginView.LoggedInUser;
 
                 user.IsOnline = false;
-                user.UsageHistories.Add(new Models.UsageHistory(user.KeycardId, DateTime.Now, 5, false));
+                user.UsageHistories.Add(new Models.UsageHistory(user.KeycardId, DateTime.Now, 5, "Out"));
 
 
                 DatabaseContext databaseContext = new DatabaseContext();
