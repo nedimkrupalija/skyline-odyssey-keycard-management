@@ -12,7 +12,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
@@ -44,6 +45,19 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
+
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <WrapPanel>
+                        <TextBlock Text="Change clearance level" />
+                        <ComboBox />
+                    </WrapPanel>
+                    
+                    
+                </Grid>
 
             </Grid>
         </Border>
