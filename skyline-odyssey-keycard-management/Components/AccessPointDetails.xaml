@@ -54,7 +54,7 @@
 
                     <WrapPanel VerticalAlignment="Center" Margin="0 20 0 0" >
                         <TextBlock Text="Change clearance level" FontWeight="Bold" Margin="0 0 10 0" />
-                        <ComboBox x:Name="ComboBoxAccessPoints" Width="100" Margin="0 0 10 0"/>
+                        <ComboBox x:Name="ComboBoxAccessPoints" Width="100" Margin="0 0 10 0" />
                         <Button x:Name="changeClearanceLevel" Content="Change clearance level" Click="ChangeClearance_Clicked" />
                     </WrapPanel>
                     

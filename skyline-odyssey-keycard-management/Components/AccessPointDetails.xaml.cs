@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.Store;
 using skyline_odyssey_keycard_management.ViewModels;
 using skyline_odyssey_keycard_management.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,24 +39,22 @@ namespace skyline_odyssey_keycard_management.Components
 
         private void AssignClearanceLevel()
         {
-            var clearanceLevels = _databaseContext.AccessPoints.ToList();
-            foreach (var level in clearanceLevels)
-            {
-                if (!ComboBoxAccessPoints.Items.Contains(level.AccessLevel))
-                {
-                    ComboBoxAccessPoints.Items.Add(level.AccessLevel);
-                }
-
-            }
-
+                    ComboBoxAccessPoints.Items.Add(3);
+                    ComboBoxAccessPoints.Items.Add(4);
+                    ComboBoxAccessPoints.Items.Add(5);
         }
 
         private void ChangeClearance_Clicked(object sender, RoutedEventArgs e)
         {
+
+
+            try { 
             var accessPoints = _databaseContext.AccessPoints.ToList();
 
             var currentAccessPoint = new AccessPoint();
             
+            
+
             foreach (var point in accessPoints)
             {
                 if (point.Name == AccessPointName.Text)
@@ -63,24 +63,27 @@ namespace skyline_odyssey_keycard_management.Components
                     {
                         currentAccessPoint = point;
                         currentAccessPoint.AccessLevel = int.Parse(ComboBoxAccessPoints.Text);
-                        Trace.WriteLine("current " + currentAccessPoint.Name);
-                        
-                    }
+                       _databaseContext.AccessPoints.Update(currentAccessPoint);
+						_databaseContext.SaveChanges();
+						string messageBoxText = "Clearance changed successfully.";
+							string caption = "Success";
+							MessageBoxButton button = MessageBoxButton.OK;
+							MessageBoxImage icon = MessageBoxImage.Information;
+							MessageBoxResult result;
+							result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
+						}
                 }
   
             }
 
-            _databaseContext.AccessPoints.Update(currentAccessPoint);
-            _databaseContext.SaveChanges();
+			
 
-            string messageBoxText = "Clearance changed successfully.";
-            string caption = "Success";
-            MessageBoxButton button = MessageBoxButton.OK;
-            MessageBoxImage icon = MessageBoxImage.Information;
-            MessageBoxResult result;
+            }
+            catch (Exception ex) { }
 
-            result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
-        }
+
+
+		}
 
 
     }
