@@ -61,10 +61,10 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Keycard assigned" FontWeight="Bold"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Keycard.IsAssigned}" />
+                    <TextBlock Grid.Column="1" Text="{Binding KeycardIsAssigned}" />
                 </Grid>
 
-                <ListView Grid.Row="5" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
+                <ListView MaxHeight="200" Grid.Row="5" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="106.64" Header="Access Point Name" DisplayMemberBinding="{Binding AccessPoint.Name}"/>
