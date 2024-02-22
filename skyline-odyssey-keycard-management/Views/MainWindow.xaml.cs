@@ -1,5 +1,4 @@
-﻿using MimeKit;
-using skyline_odyssey_keycard_management.Views;
+﻿using skyline_odyssey_keycard_management.Views;
 using System.Net.Mail;
 using System.Text;
 using System.Windows;

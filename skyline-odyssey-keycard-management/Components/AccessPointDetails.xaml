@@ -12,7 +12,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" MinHeight="150"/>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -29,7 +29,7 @@
                 <Grid Grid.Row="1" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="1" x:Name="AccessPointLevel" Margin="0 0 10 10" Text="{Binding AccessLevel}" />

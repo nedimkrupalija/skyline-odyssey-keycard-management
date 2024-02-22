@@ -14,6 +14,8 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         public string Name => AccessPoint.Name;
 
+        public int AccessLevel => AccessPoint.AccessLevel;
+
 
         public AccessPointListingItemViewModel(AccessPoint accessPoint)
         {
