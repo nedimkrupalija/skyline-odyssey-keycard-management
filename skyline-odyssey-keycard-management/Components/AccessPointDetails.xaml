@@ -38,10 +38,11 @@
                 <ListView VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Hidden" MaxHeight="170" Grid.Row="2" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Width="190" Header="Card Id" DisplayMemberBinding="{Binding CardId}"/>
-                            <GridViewColumn Width="190" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" />
-                            <GridViewColumn Width="190" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" />
-                            <GridViewColumn Width="190" Header="Direction" DisplayMemberBinding="{Binding InOut}" />
+                            <GridViewColumn Width="135" Header="Username" DisplayMemberBinding="{Binding User.Username}"></GridViewColumn>
+                            <GridViewColumn Width="135" Header="Card Id" DisplayMemberBinding="{Binding CardId}"/>
+                            <GridViewColumn Width="135" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" />
+                            <GridViewColumn Width="135" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" />
+                            <GridViewColumn Width="135" Header="Direction" DisplayMemberBinding="{Binding InOut}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
