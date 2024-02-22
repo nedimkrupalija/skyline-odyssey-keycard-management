@@ -62,7 +62,7 @@
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
 
-            <ListView Grid.Row="1" ItemsSource="{Binding Users}" Width="auto" >
+            <ListView  Grid.Row="1" ItemsSource="{Binding Users}" Width="auto" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="auto" Header="Users in office" DisplayMemberBinding="{Binding Username}"/>

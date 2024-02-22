@@ -34,7 +34,7 @@
                     <TextBlock Grid.Column="1" Margin="0 0 10 10" Text="{Binding AccessLevel}" />
                     <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Access level:" FontWeight="Bold" />
                 </Grid>
-                <ListView Grid.Row="2" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
+                <ListView MaxHeight="200" Grid.Row="2" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="133.3" Header="Card Id" DisplayMemberBinding="{Binding CardId}"/>
@@ -47,5 +47,6 @@
 
             </Grid>
         </Border>
+      
     </Grid>
 </UserControl>
