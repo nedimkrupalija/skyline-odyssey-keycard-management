@@ -66,7 +66,7 @@ namespace skyline_odyssey_keycard_management.Views
             LoginView loginView = new LoginView();
             LoginView.LoggedInUser.IsOnline = false;
 
-            LoginView.LoggedInUser.UsageHistories.Add(new UsageHistory(LoginView.LoggedInUser.Keycard.Id, DateTime.Now, 5,false)); 
+            LoginView.LoggedInUser.UsageHistories.Add(new UsageHistory(LoginView.LoggedInUser.Keycard.Id, DateTime.Now, 5,"Out")); 
 
             _databaseContext.Update(LoginView.LoggedInUser);
             

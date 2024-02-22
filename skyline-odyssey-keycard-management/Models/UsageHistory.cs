@@ -15,12 +15,12 @@ namespace skyline_odyssey_keycard_management.Models
             
         }
 
-        public UsageHistory(int cardId, DateTime timestamp, int accessPointId, Boolean isEntry)
+        public UsageHistory(int cardId, DateTime timestamp, int accessPointId, string inOut)
         {
             CardId = cardId;
 			Timestamp = timestamp;
 			AccessPointId = accessPointId;
-			IsEntry	= isEntry;
+			InOut	= inOut;
 
         }
         [Key]
@@ -41,7 +41,7 @@ namespace skyline_odyssey_keycard_management.Models
 
 		public AccessPoint AccessPoint { get; set; }
 
-		public Boolean IsEntry { get; set; }
+		public string InOut { get; set; }
 
 
 	}
