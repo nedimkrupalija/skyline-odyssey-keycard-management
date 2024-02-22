@@ -22,17 +22,17 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="1" Margin="0 0 10 10" Text="{Binding Name}"/>
+                    <TextBlock x:Name="AccessPointName" Grid.Column="1" Margin="0 0 10 10" Text="{Binding Name}"/>
                     <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Access point name:" FontWeight="Bold" />
                 </Grid>
 
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="1" Margin="0 0 10 10" Text="{Binding AccessLevel}" />
+                    <TextBlock Grid.Column="1" x:Name="AccessPointLevel" Margin="0 0 10 10" Text="{Binding AccessLevel}" />
                     <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Access level:" FontWeight="Bold" />
                 </Grid>
                 <ListView MaxHeight="200" Grid.Row="2" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
@@ -46,14 +46,15 @@
                     </ListView.View>
                 </ListView>
 
-                <Grid Grid.Row="3">
+                <Grid Grid.Row="3" HorizontalAlignment="Right">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <WrapPanel>
-                        <TextBlock Text="Change clearance level" />
-                        <ComboBox />
+                    <WrapPanel Margin="0 20 0 0" >
+                        <TextBlock Text="Change clearance level" FontWeight="Bold" Margin="0 0 10 0" />
+                        <ComboBox x:Name="ComboBoxAccessPoints" Width="100" Margin="0 0 10 0"/>
+                        <Button x:Name="changeClearanceLevel" Content="Change clearance level" Click="ChangeClearance_Clicked" />
                     </WrapPanel>
                     
                     
