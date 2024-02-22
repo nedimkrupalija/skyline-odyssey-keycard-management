@@ -40,5 +40,7 @@ namespace skyline_odyssey_keycard_management.Views
             this.Content = new MainAdminView();
 
         }
+
+		
     }
 }
