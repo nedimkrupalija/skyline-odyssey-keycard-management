@@ -38,8 +38,8 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="133.3" Header="Card Id" DisplayMemberBinding="{Binding CardId}"/>
-                            <GridViewColumn Width="133.3" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd.MM.yyyy}}" />
-                            <GridViewColumn Width="133.3" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm:ss}}" />
+                            <GridViewColumn Width="133.3" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" />
+                            <GridViewColumn Width="133.3" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" />
                             <GridViewColumn Width="133.3" Header="Entered" DisplayMemberBinding="{Binding IsEntry}" />
                         </GridView>
                     </ListView.View>

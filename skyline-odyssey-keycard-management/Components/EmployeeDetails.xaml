@@ -69,8 +69,8 @@
                         <GridView>
                             <GridViewColumn Width="106.64" Header="Access Point Name" DisplayMemberBinding="{Binding AccessPoint.Name}"/>
                             <GridViewColumn Width="106.64" Header="Card ID" DisplayMemberBinding="{Binding CardId}" />
-                            <GridViewColumn Width="106.64" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd.MM.yyyy}}" />
-                            <GridViewColumn Width="106.64" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm:ss}}" />
+                            <GridViewColumn Width="106.64" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" />
+                            <GridViewColumn Width="106.64" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" />
                             <GridViewColumn Width="106.64" Header="Entered" DisplayMemberBinding="{Binding IsEntry}" />
                         </GridView>
                     </ListView.View>
