@@ -104,9 +104,11 @@ namespace skyline_odyssey_keycard_management.Components
 					userKeycard = keycard;
                 }
             }
+
+
                 userKeycard.IsAssigned = true;
                 _databaseContext.Update(userKeycard);
-                var addedUser = new User(FirstName.Text, LastName.Text, FirstName.Text + LastName.Text + userCount, HashPassword(FirstName.Text + LastName.Text + userCount), userRole.Id, userRole, userKeycard.Id, userKeycard);
+                var addedUser = new User(FirstName.Text, LastName.Text, (FirstName.Text + LastName.Text + userCount).ToLower(), HashPassword((FirstName.Text + LastName.Text + userCount).ToLower()), userRole.Id, userRole, userKeycard.Id, userKeycard,  (FirstName.Text+"."+LastName.Text+"@skyline.be").ToLower());
 				_databaseContext.Users.Add(addedUser);
 				_databaseContext.SaveChanges();
 				//MessageBoxResult result = MessageBox.Show( "User succesfully added");

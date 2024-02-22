@@ -18,6 +18,7 @@ namespace skyline_odyssey_keycard_management.Models
         [Key]
 		public int Id { get; set; }
 
+		public User User { get; set; }
 
 		public Boolean IsAssigned { get; set; }
 

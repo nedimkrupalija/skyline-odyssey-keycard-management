@@ -1,4 +1,6 @@
-﻿using skyline_odyssey_keycard_management.Views;
+﻿using MimeKit;
+using skyline_odyssey_keycard_management.Views;
+using System.Net.Mail;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +12,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Net;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
+using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+
+
 namespace skyline_odyssey_keycard_management
 {
     /// <summary>
@@ -17,26 +25,77 @@ namespace skyline_odyssey_keycard_management
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DatabaseContext _databaseContext;
         public MainWindow()
         {
             InitializeComponent();
             this.Closing += MainWindow_Closing;
 
-        }
+            _databaseContext = new DatabaseContext();
+				
+			
+		}
 
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        public void Send_Email(string to, string subject, string body)
         {
-                var user = LoginView.LoggedInUser;
 
-                user.IsOnline = false;
-                user.UsageHistories.Add(new Models.UsageHistory(user.KeycardId, DateTime.Now, 5, "Out"));
+			MailMessage message = new MailMessage();
+			SmtpClient smtp = new SmtpClient();
+			message.From = new MailAddress("skylinekeycardsystem@gmail.com");
+			message.To.Add(new MailAddress(to));
+			message.Subject = subject;
+			message.IsBodyHtml = true;
+			message.Body = body;
+			smtp.Port = 587;
+			smtp.Host = "smtp.gmail.com";
+			smtp.EnableSsl = true;
+			smtp.UseDefaultCredentials = false;
+			smtp.Credentials = new NetworkCredential("skylinekeycardsystem@gmail.com", "jppj gwst dcbt agcm");
+			smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+			smtp.Send(message);
+		}
+
+		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			
+				var user = LoginView.LoggedInUser;
+				
+				Trace.WriteLine(user.ToString());
+
+				user.IsOnline = false;
+				user.UsageHistories.Add(new Models.UsageHistory(user.KeycardId, DateTime.Now, 5, "Out"));
+
+				var usageHistories = user.UsageHistories.ToList();
+
+				if (user.Role.Name == "Employee")
+				{
+					usageHistories.RemoveAll(u => u.Timestamp.Date != DateTime.Now.Date);
+					usageHistories.RemoveAll(u => u.InOut != "In" && u.AccessPointId != 5);
+					var usageHistory = usageHistories.Min(u => u.Timestamp);
+
+					Trace.WriteLine("Usage history: " + usageHistory);
 
 
-                DatabaseContext databaseContext = new DatabaseContext();
-                databaseContext.Update(LoginView.LoggedInUser);
-                databaseContext.SaveChanges();
+					var timeDifference = DateTime.Now - usageHistory;
 
-           
-        }
+
+					if (DateTime.Now.Hour >= 14 && timeDifference.Hours < 8)
+					{
+						//Send_Email("nkrupalija1@etf.unsa.ba", "Employee left", user.Role.Name + " " + user.FirstName + " " + user.LastName + " left the office. Worked today for " + timeDifference.Hours + " hour and " + timeDifference.Minutes + " minutes");
+					//	Send_Email(user.Email, "Employee left", "You left the office. Worked today for " + timeDifference.Hours + " hour and " + timeDifference.Minutes + " minutes");
+					}
+				}
+
+
+
+				DatabaseContext databaseContext = new DatabaseContext();
+				databaseContext.Update(LoginView.LoggedInUser);
+				databaseContext.SaveChanges();
+
+
+			
+			
+
+		}
     }
 }

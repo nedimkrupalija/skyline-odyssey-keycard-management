@@ -29,7 +29,7 @@ namespace skyline_odyssey_keycard_management.Models
             Keycard = keycard;
         }
 
-		public User( string firstName, string lastName, string username, string password, int roleId, Role role, int keycardId, Keycard keycard)
+		public User( string firstName, string lastName, string username, string password, int roleId, Role role, int keycardId, Keycard keycard, string email)
 		{
 			
 			FirstName = firstName;
@@ -40,6 +40,7 @@ namespace skyline_odyssey_keycard_management.Models
 			Role = role;
 			KeycardId = keycardId;
 			Keycard = keycard;
+			Email = email;
 		}
 
 		[Key]
@@ -61,6 +62,9 @@ namespace skyline_odyssey_keycard_management.Models
 		public Keycard Keycard { get; set; }
 		
 		public Boolean IsOnline { get; set; }	
+
+		public string Email { get; set; }
+
 
 		public ICollection<UsageHistory> UsageHistories { get; set; }	
 
