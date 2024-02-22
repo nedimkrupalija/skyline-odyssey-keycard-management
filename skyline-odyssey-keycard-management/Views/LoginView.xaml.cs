@@ -52,7 +52,7 @@ namespace skyline_odyssey_keycard_management.Views
                     user.IsOnline = true;
                     var mainAccessPoint = databaseContext.AccessPoints.FirstOrDefault(a => a.Name == "Main enterance");
 
-                    var newUsageHistory = new UsageHistory(user.Keycard.Id, DateTime.Now, mainAccessPoint.Id, true);
+                    var newUsageHistory = new UsageHistory(user.Keycard.Id, DateTime.Now, mainAccessPoint.Id, "In");
                     user.UsageHistories.Add(newUsageHistory);
 
                     databaseContext.SaveChanges();

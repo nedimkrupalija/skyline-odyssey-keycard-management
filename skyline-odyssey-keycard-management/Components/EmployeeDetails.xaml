@@ -61,17 +61,17 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Keycard assigned" FontWeight="Bold"/>
-                    <TextBlock Grid.Column="1" Text="{Binding Keycard.IsAssigned}" />
+                    <TextBlock Grid.Column="1" Text="{Binding KeycardIsAssigned}" />
                 </Grid>
 
-                <ListView Grid.Row="5" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
+                <ListView MaxHeight="200" Grid.Row="5" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="106.64" Header="Access Point Name" DisplayMemberBinding="{Binding AccessPoint.Name}"/>
                             <GridViewColumn Width="106.64" Header="Card ID" DisplayMemberBinding="{Binding CardId}" />
-                            <GridViewColumn Width="106.64" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd.MM.yyyy}}" />
-                            <GridViewColumn Width="106.64" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm:ss}}" />
-                            <GridViewColumn Width="106.64" Header="Entered" DisplayMemberBinding="{Binding IsEntry}" />
+                            <GridViewColumn Width="106.64" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" />
+                            <GridViewColumn Width="106.64" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" />
+                            <GridViewColumn Width="106.64" Header="Direction" DisplayMemberBinding="{Binding InOut}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
