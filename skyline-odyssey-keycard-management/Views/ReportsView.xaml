@@ -49,9 +49,9 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="0 0 10 0" Orientation="Horizontal">
                         <TextBlock Text="From " Margin="0 0 10 0" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="startHours" Width="50" ItemsSource="{Binding Hours}" />
+                        <ComboBox Text="07" x:Name="startHours" Width="50" ItemsSource="{Binding Hours}" />
                         <Label Content=":"/>
-                        <ComboBox x:Name="startMinutes" Width="50" ItemsSource="{Binding Minutes}"/>
+                        <ComboBox Text="00" x:Name="startMinutes" Width="50" ItemsSource="{Binding Minutes}"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
