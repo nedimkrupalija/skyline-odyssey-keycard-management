@@ -29,35 +29,56 @@ namespace skyline_odyssey_keycard_management.Views
 			InitializeComponent();
 		}
 
-		private void LoginButton_Click(object sender, RoutedEventArgs e)
+        public static bool VerifyPassword(string enteredPassword, string hashedPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(enteredPassword, hashedPassword);
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
 		{
 			DatabaseContext databaseContext = new DatabaseContext();
 			var username = UsernameTextBox.Text;
 			var password = PasswordTextBox.Password;
 			
 			var user = databaseContext.Users.Include(u => u.Role).Include(u=>u.Keycard).Include(u=>u.UsageHistories)
-				.FirstOrDefault(u => u.Username == username && u.Password == password);
+				.FirstOrDefault(u => u.Username == username);
 			
-			if (user != null)
+            
+
+            if (user != null)
 			{
-				user.IsOnline = true;
-				var mainAccessPoint = databaseContext.AccessPoints.FirstOrDefault(a => a.Name == "Main enterance");
+				if(VerifyPassword(password, user.Password))
+				{
+                    user.IsOnline = true;
+                    var mainAccessPoint = databaseContext.AccessPoints.FirstOrDefault(a => a.Name == "Main enterance");
+
+                    var newUsageHistory = new UsageHistory(user.Keycard.Id, DateTime.Now, mainAccessPoint.Id, true);
+                    user.UsageHistories.Add(newUsageHistory);
+
+                    databaseContext.SaveChanges();
+                    LoggedInUser = user;
+                    if (user.Role.Name.Equals("Manager") || user.Role.Name.Equals("CEO"))
+                    {
+                        MainAdminView mainAdminView = new MainAdminView();
+                        this.Content = mainAdminView;
+                    }
+                    else if (user.Role.Name.Equals("Employee"))
+                    {
+                        EmployeePanelView empPanelView = new EmployeePanelView();
+                        this.Content = empPanelView;
+                    }
+                }
+                else
+                {
+                    string messageBoxText = "Please input valid credentials.";
+                    string caption = "Warning";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Warning;
+                    MessageBoxResult result;
+
+                    result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
+                }
 				
-				var newUsageHistory = new UsageHistory(user.Keycard.Id, DateTime.Now, mainAccessPoint.Id, true);
-				user.UsageHistories.Add(newUsageHistory);
-		
-				databaseContext.SaveChanges();
-				LoggedInUser = user;
-				if (user.Role.Name.Equals("Manager")||user.Role.Name.Equals("CEO"))
-				{
-					MainAdminView mainAdminView = new MainAdminView();
-					this.Content = mainAdminView;
-				}
-				else if (user.Role.Name.Equals("Employee"))
-				{
-					EmployeePanelView empPanelView = new EmployeePanelView();
-					this.Content = empPanelView;
-				}
 				
 			}
 			else
