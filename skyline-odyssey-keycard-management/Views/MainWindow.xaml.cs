@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using skyline_odyssey_keycard_management.Views;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,7 +20,23 @@ namespace skyline_odyssey_keycard_management
         public MainWindow()
         {
             InitializeComponent();
+            this.Closing += MainWindow_Closing;
 
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+                var user = LoginView.LoggedInUser;
+
+                user.IsOnline = false;
+                user.UsageHistories.Add(new Models.UsageHistory(user.KeycardId, DateTime.Now, 5, false));
+
+
+                DatabaseContext databaseContext = new DatabaseContext();
+                databaseContext.Update(LoginView.LoggedInUser);
+                databaseContext.SaveChanges();
+
+           
         }
     }
 }

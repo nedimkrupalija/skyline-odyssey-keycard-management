@@ -8,5 +8,5 @@ namespace skyline_odyssey_keycard_management
     public partial class App : Application
     {
     }
-
 }
+
