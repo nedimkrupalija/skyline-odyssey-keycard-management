@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -66,12 +67,25 @@ namespace skyline_odyssey_keycard_management.Views
             LoginView loginView = new LoginView();
             LoginView.LoggedInUser.IsOnline = false;
 
-            LoginView.LoggedInUser.UsageHistories.Add(new UsageHistory(LoginView.LoggedInUser.Keycard.Id, DateTime.Now, 5,false)); 
+            LoginView.LoggedInUser.UsageHistories.Add(new UsageHistory(LoginView.LoggedInUser.Keycard.Id, DateTime.Now, 5, false));
 
             _databaseContext.Update(LoginView.LoggedInUser);
-            
+
             _databaseContext.SaveChanges();
             this.Content = loginView;
+        }
+
+        public void LoadColumnChartData()
+        {
+            ((ColumnSeries)columnChart.Series[0]).ItemsSource = new ChartDataViewModel[]
+    {
+        new ChartDataViewModel { Key = "Project Manager", Value = 12 },
+        new ChartDataViewModel { Key = "CEO", Value = 25 },
+        new ChartDataViewModel { Key = "Software Engg.", Value = 5 },
+        new ChartDataViewModel { Key = "Team Leader", Value = 6 },
+        new ChartDataViewModel { Key = "Project Leader", Value = 10 },
+        new ChartDataViewModel { Key = "Developer", Value = 4 }
+    };
         }
     }
 }

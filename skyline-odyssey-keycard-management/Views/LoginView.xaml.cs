@@ -61,6 +61,8 @@ namespace skyline_odyssey_keycard_management.Views
                     {
                         MainAdminView mainAdminView = new MainAdminView();
                         this.Content = mainAdminView;
+                        
+                        
                     }
                     else if (user.Role.Name.Equals("Employee"))
                     {

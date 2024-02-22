@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
              xmlns:viewmodels="clr-namespace:skyline_odyssey_keycard_management.ViewModels"
              xmlns:views="clr-namespace:skyline_odyssey_keycard_management.Views" d:DataContext="{d:DesignInstance Type=viewmodels:MainAdminViewModel}"
+             xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=DotNetProjects.DataVisualization.Toolkit"
+             xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -27,7 +29,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            
+            <RowDefinition Height="1*"/>
+
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -121,6 +124,13 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
+        <DVC:Chart x:Name="columnChart" Grid.Column="3" Grid.Row="1" Width="350" Title="Last week's report" HorizontalAlignment="Right" Margin="0 0 25 0">
+            <DVC:Chart.Series>
+                <DVC:ColumnSeries Title="No. of users" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+                    
+                </DVC:ColumnSeries>
+            </DVC:Chart.Series>
+        </DVC:Chart>
 
     </Grid>
 </UserControl>
