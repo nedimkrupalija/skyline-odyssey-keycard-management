@@ -31,7 +31,7 @@ namespace skyline_odyssey_keycard_management.Views
         public List<int> Minutes { get; } = new List<int> { 0, 15, 30, 45 };
 
 
-        private DatabaseContext databaseContext = new DatabaseContext();
+        private DatabaseContext _databaseContext = new DatabaseContext();
         public UsageReportsListingViewModel UsageReportsListingViewModel { get; set; }
         private ObservableCollection<UsageReportsListingItemViewModel> _usageReportsListingItemViewModels;
 
@@ -53,7 +53,15 @@ namespace skyline_odyssey_keycard_management.Views
             _usageReportsListingItemViewModels = new ObservableCollection<UsageReportsListingItemViewModel>();
             DataContext = this;
 
-            
+            var usagereports = _databaseContext.UsageHistories.Include(u => u.AccessPoint).Include(u => u.Keycard).ToList();
+            _usageReportsListingItemViewModels = new ObservableCollection<UsageReportsListingItemViewModel>();
+            foreach (var usagereport in usagereports)
+            {
+                _usageReportsListingItemViewModels.Add(new UsageReportsListingItemViewModel(usagereport));
+
+            }
+
+
         }
 
         private void BackButton_Clicked(object sender, RoutedEventArgs e)
@@ -90,7 +98,7 @@ namespace skyline_odyssey_keycard_management.Views
 
             if (startDate != null || endDate != null)
             {
-                var usageReports = databaseContext.UsageHistories
+                var usageReports = _databaseContext.UsageHistories
                             .Include(u => u.AccessPoint)
                             .Include(u => u.Keycard)
                             .Where(u => u.Timestamp >= startDate && u.Timestamp <= endDate)
@@ -120,7 +128,7 @@ namespace skyline_odyssey_keycard_management.Views
                 Trace.WriteLine("start date: " + startDateTime);
                 Trace.WriteLine("end date: " + endDateTime);
 
-                var usageReports = databaseContext.UsageHistories
+                var usageReports = _databaseContext.UsageHistories
                     .Include(u => u.AccessPoint)
                     .Include(u => u.Keycard)
                     .Where(u => u.Timestamp >= startDateTime && u.Timestamp <= endDateTime)
@@ -151,7 +159,7 @@ namespace skyline_odyssey_keycard_management.Views
                 Trace.WriteLine("start date: " + startDateTime);
                 Trace.WriteLine("end date: " + endDateTime);
 
-                var usageReports = databaseContext.UsageHistories
+                var usageReports = _databaseContext.UsageHistories
                     .Include(u => u.AccessPoint)
                     .Include(u => u.Keycard)
                     .Where(u => u.Timestamp >= startDateTime && u.Timestamp <= endDateTime)

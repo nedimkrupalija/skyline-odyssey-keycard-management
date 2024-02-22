@@ -13,6 +13,9 @@
         <DataTemplate x:Name="mainAdminView" DataType="{x:Type viewmodels:EmployeesViewModel}">
             <views:MainAdminView DataContext="{Binding}"></views:MainAdminView>
         </DataTemplate>
+        <DataTemplate x:Name="usageReportsView" DataType="{x:Type viewmodels:UsageReportsViewModel}">
+            <views:ReportsView DataContext="{Binding}"></views:ReportsView>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
 
@@ -63,8 +66,8 @@
             <StackPanel Grid.Column="1">
                 <TextBlock Text="Filter by date:" HorizontalAlignment="Center" Margin="0 0 0 5" />
                 <StackPanel Orientation="Horizontal" >
-                    <DatePicker x:Name="startDatePicker" SelectedDate="{Binding StartDate, Mode=TwoWay}" Margin="10 0 10 0"/>
-                    <DatePicker x:Name="endDatePicker" SelectedDate="{Binding EndDate, Mode=TwoWay}"/>
+                    <DatePicker x:Name="startDatePicker" Text="Select start date" SelectedDate="{Binding StartDate, Mode=TwoWay}" Margin="10 0 10 0"/>
+                    <DatePicker x:Name="endDatePicker" Text="Select end date" SelectedDate="{Binding EndDate, Mode=TwoWay}"/>
                 </StackPanel>
             </StackPanel>
 
