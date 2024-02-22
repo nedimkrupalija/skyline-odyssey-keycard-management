@@ -106,7 +106,7 @@ namespace skyline_odyssey_keycard_management.Components
             }
                 userKeycard.IsAssigned = true;
                 _databaseContext.Update(userKeycard);
-                var addedUser = new User(FirstName.Text, LastName.Text, FirstName.Text + LastName.Text + userCount, FirstName.Text + LastName.Text + userCount, userRole.Id, userRole, userKeycard.Id, userKeycard);
+                var addedUser = new User(FirstName.Text, LastName.Text, FirstName.Text + LastName.Text + userCount, HashPassword(FirstName.Text + LastName.Text + userCount), userRole.Id, userRole, userKeycard.Id, userKeycard);
 				_databaseContext.Users.Add(addedUser);
 				_databaseContext.SaveChanges();
 				//MessageBoxResult result = MessageBox.Show( "User succesfully added");
@@ -149,7 +149,10 @@ namespace skyline_odyssey_keycard_management.Components
 
 		}
 
-
+        public static string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password, BCrypt.Net.BCrypt.GenerateSalt());
+        }
 
     }
 }

@@ -40,7 +40,7 @@
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Employee role" FontWeight="Bold"/>
+                    <TextBlock Grid.Column="0" Margin="0 0 10 10" Text="Role" FontWeight="Bold"/>
                     <TextBlock Grid.Column="1" Text="{Binding Role.Name}" />
                 </Grid>
 
