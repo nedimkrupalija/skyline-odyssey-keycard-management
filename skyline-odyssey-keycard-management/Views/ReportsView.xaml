@@ -84,7 +84,7 @@
             <ListView ItemsSource="{Binding UsageHistoryList}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="User">
+                        <GridViewColumn Header="User" Width="142">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -94,11 +94,11 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Card ID" DisplayMemberBinding="{Binding CardId}" Width="100" />
-                        <GridViewColumn Header="Room" DisplayMemberBinding="{Binding AccessPoint.Name}" Width="100" />
-                        <GridViewColumn Header="AccessLevel" DisplayMemberBinding="{Binding AccessPoint.AccessLevel}" Width="100" />
-                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" Width="100"/>
-                        <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" Width="100"/>
+                        <GridViewColumn Header="Card ID" DisplayMemberBinding="{Binding CardId}" Width="142" />
+                        <GridViewColumn Header="Room" DisplayMemberBinding="{Binding AccessPoint.Name}" Width="142" />
+                        <GridViewColumn Header="AccessLevel" DisplayMemberBinding="{Binding AccessPoint.AccessLevel}" Width="143" />
+                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" Width="143"/>
+                        <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" Width="143"/>
                     </GridView>
                 </ListView.View>
             </ListView>
