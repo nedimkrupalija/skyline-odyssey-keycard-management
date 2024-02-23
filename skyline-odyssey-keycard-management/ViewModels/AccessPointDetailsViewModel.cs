@@ -26,12 +26,16 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         public string Username => _selectedAccessPointStore.SelectedAccessPoint?.keycard?.User?.FirstName?? "Unkown";
 
+
+        public static AccessPoint CurrentAccessPoint { get; set; }
+
         public AccessPointDetailsViewModel(SelectedAccessPointStore selectedAccessPointStore)
         {
             _selectedAccessPointStore = selectedAccessPointStore;
 
             _selectedAccessPointStore.SelectedAccessPointChanged += _selectedAccessPointStore_SelectedAccessPointChanged; ;
-       
+        
+            CurrentAccessPoint = _selectedAccessPointStore.SelectedAccessPoint; 
             
         }
 
@@ -45,6 +49,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
             OnPropertyChanged(nameof(UsageHistories));
             OnPropertyChanged(nameof(Username));
             OnPropertyChanged(nameof(UsersCount));
+            OnPropertyChanged(nameof(CurrentAccessPoint));
         }
 
         protected override void Dispose()
