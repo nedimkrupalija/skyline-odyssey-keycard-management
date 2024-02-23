@@ -19,13 +19,13 @@ namespace skyline_odyssey_keycard_management.ViewModels
 		private DatabaseContext _databaseContext = new DatabaseContext();	
 		public MainAdminViewModel()
 		{
-			
+
 			var tempUsers = _databaseContext.Users.Include(u=>u.UsageHistories).ToList();
 			tempUsers.RemoveAll(p => p.IsOnline == false);
 			var tempUsageHistories = new ObservableCollection<UsageHistory>();
 			foreach (var user in tempUsers)
 			{
-				Trace.WriteLine("ABC" + user.UsageHistories.Count + "ABC");
+				
 				if (user.UsageHistories.Count > 0)
 				{
 					
@@ -44,8 +44,30 @@ namespace skyline_odyssey_keycard_management.ViewModels
 			Firstname = LoginView.LoggedInUser.FirstName;
 			Lastname = LoginView.LoggedInUser.LastName;
 			UsageHistories = tempUsageHistories;
-			Users = new ObservableCollection<User>(tempUsers);
+			
+
+
+
+			
+			
+			
+
+
+
 		}
+
+		private string _fullName;
+
+		public string FullName
+		{
+			get { return _fullName; }
+			set
+			{
+				_fullName = value;
+				OnPropertyChanged(nameof(FullName));
+			}
+		}	
+
 		private ICollection<UsageHistory> _usageHistories;	
 		public ICollection<UsageHistory> UsageHistories
 		{

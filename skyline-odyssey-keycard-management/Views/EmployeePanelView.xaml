@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
+             xmlns:viewmodels="clr-namespace:skyline_odyssey_keycard_management.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -24,18 +27,23 @@
             <TextBlock Grid.Column="1" FontSize="25" Text="Employee panel" Margin="0 0 0 5"/>
 
             <WrapPanel Grid.Column="2" HorizontalAlignment="Right">
-                <Button Grid.Column="1" Content="Log out" Click="LogoutButton_Click"/>
+
+                <Button Grid.Column="1" Content="Log out" Click="Logout_Clicked"/>
+
             </WrapPanel>
 
         </Grid>
 
         <Grid Grid.Row="1" Margin="0 5 0 20">
-            <ListView>
+            <ListView ItemsSource="{Binding UsageHistories}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" Width="80"/>
-                        <GridViewColumn Header="Timestamp" Width="80"/>
-                        <GridViewColumn Header="Keycard" Width="80"/>
+
+                        <GridViewColumn Width="214"  Header="Room" DisplayMemberBinding="{Binding AccessPoint.Name}" />
+                        <GridViewColumn Width="214" Header="Keycard" DisplayMemberBinding="{Binding CardId}"/>
+                        <GridViewColumn Width="214" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}"/>
+                        <GridViewColumn Width="214" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}"/>
+
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -48,10 +56,9 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Enter room" HorizontalAlignment="Left" />
+            <Button Grid.Column="0" Content="Enter room" HorizontalAlignment="Left" Click="EnterRoom_Clicked" />
 
             <WrapPanel HorizontalAlignment="Right">
-                <Button Grid.Column="0" Margin="0 0 5 0" Content="Request access" HorizontalAlignment="Right"/>
                 <Button Grid.Column="1" Content="Request keycard" />
             </WrapPanel>
         </Grid>

@@ -9,15 +9,54 @@ namespace skyline_odyssey_keycard_management.ViewModels
 {
     public class EmployeeListingItemViewModel  : ViewModelBase
     {
-        public User User { get; set; }
 
-        public string FirstName => User.FirstName;
 
-        public string LastName => User.LastName;
+        private User _user;
+
+        public User User
+        {
+			get { return _user; }
+			set
+            {
+				_user = value;
+				OnPropertyChanged(nameof(User));
+			}
+		}
+
+        
+
+        private string _firstName;
+
+
+
+        public string FirstName
+        {
+            get { return _firstName; }
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged(nameof(User.FirstName));
+            }
+        }
+
+        private string _lastName;
+		public string LastName
+		{
+			get { return _lastName; }
+			set
+			{
+				_lastName = value;
+				OnPropertyChanged(nameof(User.LastName));
+			}
+		}
+
+		
 
         public EmployeeListingItemViewModel(User user)
         {
             User = user;
+            FirstName = user.FirstName;
+            LastName = user.LastName;
         }
     }
 }

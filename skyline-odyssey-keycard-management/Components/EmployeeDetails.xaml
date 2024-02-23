@@ -19,6 +19,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 
@@ -33,6 +34,7 @@
                     </TextBlock>
                 </Grid>
 
+                <TextBlock x:Name="userId" Text="{Binding EmployeeId}" Foreground="white" />
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -64,17 +66,29 @@
                     <TextBlock Grid.Column="1" Text="{Binding KeycardIsAssigned}" />
                 </Grid>
 
-                <ListView MaxHeight="200" Grid.Row="5" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
+                <ListView MaxHeight="150" Grid.Row="5" ItemsSource="{Binding UsageHistories}" Width="auto" HorizontalContentAlignment="Stretch">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Width="106.64" Header="Access Point Name" DisplayMemberBinding="{Binding AccessPoint.Name}"/>
-                            <GridViewColumn Width="106.64" Header="Card ID" DisplayMemberBinding="{Binding CardId}" />
-                            <GridViewColumn Width="106.64" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" />
-                            <GridViewColumn Width="106.64" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" />
-                            <GridViewColumn Width="106.64" Header="Direction" DisplayMemberBinding="{Binding InOut}" />
+                            <GridViewColumn Width="125" Header="Access Point Name" DisplayMemberBinding="{Binding AccessPoint.Name}"/>
+                            <GridViewColumn Width="125" Header="Card ID" DisplayMemberBinding="{Binding CardId}" />
+                            <GridViewColumn Width="125" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}" />
+                            <GridViewColumn Width="125" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}" />
+                            <GridViewColumn Width="125" Header="Direction" DisplayMemberBinding="{Binding InOut}" />
                         </GridView>
                     </ListView.View>
                 </ListView>
+
+                <Grid Grid.Row="6" HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <WrapPanel Margin="0 20 0 0" >
+                        <Button x:Name="assignNewKeycard" Content="Assign keycard" Margin="0 0 5 0"/>
+                        <Button x:Name="deactivateKeycard" Content="Deactivate keycard" />
+                    </WrapPanel>
+
+                </Grid>
 
             </Grid>
         </Border>

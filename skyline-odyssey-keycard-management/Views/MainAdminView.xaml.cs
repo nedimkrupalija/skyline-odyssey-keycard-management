@@ -77,6 +77,7 @@ namespace skyline_odyssey_keycard_management.Views
             this.Content = loginView;
         }
 
+
         private void LoadColumnChartData()
         {
             DatabaseContext dbcontext = new DatabaseContext();

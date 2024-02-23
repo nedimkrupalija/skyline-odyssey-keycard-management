@@ -4,9 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:skyline_odyssey_keycard_management.Views"
+             xmlns:viewmodels="clr-namespace:skyline_odyssey_keycard_management.ViewModels"
+             xmlns:components="clr-namespace:skyline_odyssey_keycard_management.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Name="employeePanelView" DataType="{x:Type viewmodels:EmployeePanelViewModel}">
+            <local:EmployeePanelView DataContext="{Binding}"></local:EmployeePanelView>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
-            
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Column="0" Margin="5 0 0 0" Content="Back" HorizontalAlignment="Left" Click="BackButton_Clicked"/>
+
+        <ListView Name="roomListView" Grid.Row="1" Margin="50" ItemsSource="{Binding AccessPointListingItemViewModels}" DataContext="{Binding AccessPointListingViewModel}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Room Name" Width="150" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Access Level" Width="150" DisplayMemberBinding="{Binding AccessLevel}" />
+                    <GridViewColumn Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Enter Room" Style="{StaticResource ButtonSecondary}" Tag="{Binding Name}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Leave Room" Style="{StaticResource ButtonSecondary}" Tag="{Binding Name}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </UserControl>
