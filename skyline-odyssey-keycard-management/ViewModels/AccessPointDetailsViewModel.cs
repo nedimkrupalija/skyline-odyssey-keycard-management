@@ -21,7 +21,8 @@ namespace skyline_odyssey_keycard_management.ViewModels
         public ICollection<UsageHistory> UsageHistories => (_selectedAccessPointStore.SelectedAccessPoint?.UsageHistories ?? new ObservableCollection<UsageHistory>());
         public AccessPoint AccessPoint => _selectedAccessPointStore.SelectedAccessPoint?.accessPoint ?? new AccessPoint();
         public Keycard Keycard => _selectedAccessPointStore.SelectedAccessPoint?.keycard ?? new Keycard();
-        
+
+        public int UsersCount { get; set; }
 
         public string Username => _selectedAccessPointStore.SelectedAccessPoint?.keycard?.User?.FirstName?? "Unkown";
 
@@ -30,6 +31,8 @@ namespace skyline_odyssey_keycard_management.ViewModels
             _selectedAccessPointStore = selectedAccessPointStore;
 
             _selectedAccessPointStore.SelectedAccessPointChanged += _selectedAccessPointStore_SelectedAccessPointChanged; ;
+       
+            
         }
 
         private void _selectedAccessPointStore_SelectedAccessPointChanged()
@@ -41,7 +44,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
             OnPropertyChanged(nameof(Keycard));
             OnPropertyChanged(nameof(UsageHistories));
             OnPropertyChanged(nameof(Username));
-           
+            OnPropertyChanged(nameof(UsersCount));
         }
 
         protected override void Dispose()

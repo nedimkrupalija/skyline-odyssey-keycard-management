@@ -56,10 +56,10 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="Enter room" HorizontalAlignment="Left" Click="EnterRoom_Clicked" />
+            <Button x:Name="EnterRoomButton" Grid.Column="0" Content="Enter room" HorizontalAlignment="Left" Click="EnterRoom_Clicked" />
 
             <WrapPanel HorizontalAlignment="Right">
-                <Button Grid.Column="1" Content="Request keycard" Click="RequestKeycard_Clicked"/>
+                <Button x:Name="RequestKeycardButton" Grid.Column="1" Content="Request keycard" Click="RequestKeycard_Clicked"/>
             </WrapPanel>
         </Grid>
 

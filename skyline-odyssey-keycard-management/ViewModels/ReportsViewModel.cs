@@ -123,8 +123,11 @@ namespace skyline_odyssey_keycard_management.ViewModels
             SelectedStartHour = "7";
             SelectedEndHour = "18";
             DatabaseContext db = new DatabaseContext();
-            UsageHistoryList = db.UsageHistories.Include(u => u.AccessPoint).Include(u => u.Keycard).ThenInclude(u => u.User).Where(u => (SelectedStartHour == null || u.Timestamp.Hour >= int.Parse(SelectedStartHour))
-                                    && (SelectedEndHour == null || u.Timestamp.Hour < int.Parse(SelectedEndHour))).ToList();
+           
+          
+
+           UsageHistoryList = db.UsageHistories.Include(u => u.AccessPoint).Include(u => u.Keycard).ThenInclude(u => u.User).Where(u => (SelectedStartHour == null || u.Timestamp.Hour >= int.Parse(SelectedStartHour))
+                                   && (SelectedEndHour == null || u.Timestamp.Hour < int.Parse(SelectedEndHour))).ToList();
         }
         public ICommand GenerateReportCommand => new RelayCommand(GenerateReport, CanGenerateReport);
 
@@ -141,10 +144,11 @@ namespace skyline_odyssey_keycard_management.ViewModels
                                     && (SelectedEndHour == null || u.Timestamp.Hour < int.Parse(SelectedEndHour))
                                     )
                         .ToList();
+                  
 
                     var filteredReports = new List<UsageHistory>();
 
-                    if (!NameFilter.IsNullOrEmpty())
+                   if (!NameFilter.IsNullOrEmpty())
                     {
                         foreach (var filter in toBeFilteredReports)
                         {
