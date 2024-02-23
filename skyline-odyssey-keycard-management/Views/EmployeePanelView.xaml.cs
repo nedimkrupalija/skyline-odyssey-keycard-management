@@ -1,4 +1,5 @@
-﻿using skyline_odyssey_keycard_management.Models;
+﻿using skyline_odyssey_keycard_management.Components;
+using skyline_odyssey_keycard_management.Models;
 
 using skyline_odyssey_keycard_management.ViewModels;
 
@@ -28,6 +29,8 @@ namespace skyline_odyssey_keycard_management.Views
 
         private DatabaseContext _databaseContext;
 
+        private Window requestNewKeycardWindow = new RequestKeycard();
+
         public RoomsViewModel RoomsViewModel { get; set; }
         public EmployeePanelView()
         {
@@ -38,6 +41,19 @@ namespace skyline_odyssey_keycard_management.Views
 
             this.DataContext = new EmployeePanelViewModel();
 
+        }
+
+        private void RequestKeycard_Clicked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                requestNewKeycardWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                new RequestKeycard().Show();
+            }
+            //employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
