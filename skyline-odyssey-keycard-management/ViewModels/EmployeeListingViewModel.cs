@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.ApplicationServices;
+
 using skyline_odyssey_keycard_management.Models;
 using skyline_odyssey_keycard_management.Store;
 using skyline_odyssey_keycard_management.Views;
@@ -18,9 +18,30 @@ namespace skyline_odyssey_keycard_management.ViewModels
         private readonly SelectedEmployeeStore _selectedEmployeeStore;
         private ObservableCollection<EmployeeListingItemViewModel> _employeeListingItemViewModels;
 
-        public IEnumerable<EmployeeListingItemViewModel> EmployeeListingItemViewModels => _employeeListingItemViewModels;
+       
 
-        private DatabaseContext _databaseContext = new DatabaseContext();
+        public void AddNewEmployee(User user)
+        {
+			EmployeeListingItemViewModels.Add(new EmployeeListingItemViewModel(user));
+		}   
+       
+
+
+        public ObservableCollection<EmployeeListingItemViewModel> EmployeeListingItemViewModels
+        {
+            get
+            {
+				return _employeeListingItemViewModels;
+			}
+            set
+            {
+                _employeeListingItemViewModels = value;
+				OnPropertyChanged(nameof(EmployeeListingItemViewModels));
+            }
+        }
+
+
+		private DatabaseContext _databaseContext = new DatabaseContext();
 
         private EmployeeListingItemViewModel _selectedEmployeeListingItemViewModel;
         public EmployeeListingItemViewModel SelectedEmployeeListingItemViewModel
@@ -60,7 +81,7 @@ namespace skyline_odyssey_keycard_management.ViewModels
                 if(LoginView.LoggedInUser.Role.Id > user.Role.Id)
                 _employeeListingItemViewModels.Add(new EmployeeListingItemViewModel(user));
             }
-
+            OnPropertyChanged(nameof(EmployeeListingItemViewModels));
         }
     }
 }

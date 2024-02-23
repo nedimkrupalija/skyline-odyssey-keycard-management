@@ -4,6 +4,7 @@ using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,6 +31,11 @@ namespace skyline_odyssey_keycard_management.Views
         public EmployeeDetailsViewModel EmployeeDetailsViewModel { get; set; }
 
 
+
+        public static AdminPanelView Instance { get; set;}
+       
+
+
         public AdminPanelView()
         {
             InitializeComponent();
@@ -37,7 +43,8 @@ namespace skyline_odyssey_keycard_management.Views
             EmployeeListingViewModel = new EmployeeListingViewModel(selectedEmployeeStore);
             EmployeeDetailsViewModel = new EmployeeDetailsViewModel(selectedEmployeeStore);
             DataContext = this;
-
+            Instance = this;
+            
 
            // employeeDetailsForm.CancelClicked += EmployeeDetailsForm_CancelClicked;
            // employeeDetailsForm.SubmitClicked += EmployeeDetailsForm_SubmitClicked;
@@ -58,8 +65,14 @@ namespace skyline_odyssey_keycard_management.Views
 
         private void Add_Clicked(object sender, RoutedEventArgs e)
         {
-           
-             employeeDetailsFormWindow.ShowDialog();
+            try
+            {
+                employeeDetailsFormWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                new EmployeeDetailsForm().Show();
+			}   
             //employeeDetailsPopup.IsOpen = !employeeDetailsPopup.IsOpen;
         }
 

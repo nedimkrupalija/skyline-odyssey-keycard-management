@@ -122,17 +122,13 @@ namespace skyline_odyssey_keycard_management.Components
                 FirstName.Text = "";
                 LastName.Text = "";
                 ComboBoxKeycard.Text = "";
-
-
+              
 				var updatedUsers = _databaseContext.Users.Include(u => u.Keycard).Include(u => u.Role).ToList();
-				
-				
 
-				this.Hide();   
+               
+                this.Hide();   
                 
-
-
-
+                
 
 			}
 			catch(Exception ex)
