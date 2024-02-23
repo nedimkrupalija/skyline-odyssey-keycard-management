@@ -29,7 +29,8 @@ namespace skyline_odyssey_keycard_management.ViewModels
         public EmployeePanelViewModel()
         {
             DatabaseContext databaseContext = new DatabaseContext();
-            UsageHistories = databaseContext.UsageHistories.Include(u => u.User).Include(u => u.AccessPoint).Where(u => u.User.UserId == LoginView.LoggedInUser.UserId).ToList();
+            UsageHistories = databaseContext.UsageHistories.ToList();
+          UsageHistories = databaseContext.UsageHistories.Include(u => u.User).Include(u => u.AccessPoint).Where(u => u.User.UserId == LoginView.LoggedInUser.UserId).ToList();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace skyline_odyssey_keycard_management.Models
 	public class KeycardRequests
 	{
 
-        public KeycardRequests(int userId, string reason, string status)
+      public KeycardRequests(int userId, string reason, string status)
         {
 			User = new User();
 			User.UserId = userId;

@@ -27,23 +27,11 @@
                 <GridView>
                     <GridViewColumn Header="Room Name" Width="150" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Access Level" Width="150" DisplayMemberBinding="{Binding AccessLevel}" />
-                    <GridViewColumn Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Enter Room" Style="{StaticResource ButtonSecondary}" Tag="{Binding Name}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Leave Room" Style="{StaticResource ButtonSecondary}" Tag="{Binding Name}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
 
+        <Button Grid.Row="1" Margin="0 0 60 10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Content="Enter room"></Button>
+        <Button Grid.Row="1" Margin="0 0 10 10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Content="Leave room"></Button>
     </Grid>
 </UserControl>

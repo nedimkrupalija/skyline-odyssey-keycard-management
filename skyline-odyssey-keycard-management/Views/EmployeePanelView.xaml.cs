@@ -43,7 +43,18 @@ namespace skyline_odyssey_keycard_management.Views
 
             this.DataContext = new EmployeePanelViewModel();
 
-            if(_databaseContext.KeycardRequests.Where(p => p.Status == "Pending" && p.User.UserId == LoginView.LoggedInUser.UserId).ToList().Count>0)
+            if(LoginView.LoggedInUser.Keycard.IsActive)
+            {
+				EnterRoomButton.IsEnabled = true;
+			}
+			else
+            {
+				EnterRoomButton.IsEnabled = false;
+			}
+
+
+
+          if(_databaseContext.KeycardRequests.Where(p => p.Status == "Pending" && p.User.UserId == LoginView.LoggedInUser.UserId).ToList().Count>0)
             {
                 RequestKeycardButton.IsEnabled = false;
             }

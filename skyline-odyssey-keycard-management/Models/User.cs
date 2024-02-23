@@ -64,6 +64,7 @@ namespace skyline_odyssey_keycard_management.Models
 		public Boolean IsOnline { get; set; }	
 		public string Email { get; set; }
 
+		public Boolean IsInRoom { get; set; }
 
 		public ICollection<UsageHistory> UsageHistories { get; set; }	
 
