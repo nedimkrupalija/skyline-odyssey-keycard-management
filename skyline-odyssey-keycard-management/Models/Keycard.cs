@@ -24,5 +24,7 @@ namespace skyline_odyssey_keycard_management.Models
 
 		public ICollection<UsageHistory> UsageHistories { get; set; }
 		
+		public Boolean IsActive { get; set; }
+
 	}
 }

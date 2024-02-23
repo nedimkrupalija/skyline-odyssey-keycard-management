@@ -24,6 +24,7 @@ namespace skyline_odyssey_keycard_management
 
 		public DbSet<AccessPoint> AccessPoints { get; set; }
 
+		public DbSet<KeycardRequests> KeycardRequests { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
@@ -44,7 +45,7 @@ namespace skyline_odyssey_keycard_management
 				.WithOne(c => c.Role);
 			modelBuilder.Entity<AccessPoint>().ToTable("AccessPoint");
 
-
+			modelBuilder.Entity<KeycardRequests>().ToTable("KeycardRequests");
 
 
 			base.OnModelCreating(modelBuilder);

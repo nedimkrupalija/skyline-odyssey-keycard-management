@@ -76,19 +76,17 @@ namespace skyline_odyssey_keycard_management.Views
 
         private void Logout_Clicked(object sender, RoutedEventArgs e)
         {
+            DatabaseContext _databaseContext = new DatabaseContext();
             LoginView loginView = new LoginView();
             LoginView.LoggedInUser.IsOnline = false;
-            Trace.WriteLine(LoginView.LoggedInUser);
             LoginView.LoggedInUser.UsageHistories.Add(new UsageHistory(LoginView.LoggedInUser.Keycard.Id, DateTime.Now, 5, "Out"));
-
             _databaseContext.Update(LoginView.LoggedInUser);
-
             _databaseContext.SaveChanges();
             this.Content = loginView;
         }
 
-
-    }
+		
+	}
 
     
 }

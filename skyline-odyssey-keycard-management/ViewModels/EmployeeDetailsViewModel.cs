@@ -22,6 +22,14 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
        public ICollection<UsageHistory> UsageHistories => (_selectedEmployeeStore.SelectedEmployee?.UsageHistories?? new ObservableCollection<UsageHistory>());
 
+
+       
+
+        public Boolean KeycardActive => _selectedEmployeeStore.SelectedEmployee?.Keycard?.IsActive ?? false;
+
+
+		public static User SelectedUser { get; set;}
+
         private string _keycardIsAssigned;
 
         public string KeycardIsAssigned
@@ -68,9 +76,9 @@ namespace skyline_odyssey_keycard_management.ViewModels
             OnPropertyChanged(nameof(Role));
             OnPropertyChanged(nameof(Keycard));
             OnPropertyChanged(nameof(KeycardIsAssigned));
-            
+            SelectedUser = _selectedEmployeeStore.SelectedEmployee;
             OnPropertyChanged(nameof(UsageHistories));
-            
+            OnPropertyChanged(nameof(KeycardActive));
 
         }
     }
