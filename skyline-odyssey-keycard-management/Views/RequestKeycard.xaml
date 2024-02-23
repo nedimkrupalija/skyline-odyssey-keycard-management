@@ -18,25 +18,31 @@
         <TextBlock Grid.Row="0" Text="New keycard request" HorizontalAlignment="Center" FontWeight="Bold" FontSize="15" Margin="0 0 0 10"/>
 
         <WrapPanel Grid.Row="1">
-            <CheckBox Margin="5"/>
+        
+          
+            <RadioButton x:Name="firstButton" HorizontalAlignment="Left" GroupName="RadioKeycard" Margin="5"/>
             <TextBlock Text="I'm a new employee and I don't have a keycard" Margin="5"/>
         </WrapPanel>
 
 
         <WrapPanel Grid.Row="2">
-            <CheckBox Margin="5"/>
-            <TextBlock Grid.Row="1" Text="I lost my keycard" Margin="5"/>
+            <RadioButton x:Name="secondButton" HorizontalAlignment="Left" GroupName="RadioKeycard" Margin="5"/>
+            <TextBlock  Grid.Row="1" Text="I lost my keycard" Margin="5"/>
         </WrapPanel>
 
+        
 
         <WrapPanel Grid.Row="3" VerticalAlignment="Center">
-            <TextBlock Text="Other reason" Margin="0 5 5 0"/>
-            <TextBox Margin="5" Width="200"/>
+            
+                <RadioButton  x:Name="thirdButton" Margin="5 0 10 0" HorizontalAlignment="Center" VerticalAlignment="Center" GroupName="RadioKeycard"></RadioButton>
+
+            <TextBlock  Text="Other reason" Margin="0 5 5 0"/>
+            <TextBox x:Name="reasonBox"  IsEnabled="{Binding IsChecked, ElementName=thirdButton}" Margin="5" Width="200"/>
+
         </WrapPanel>
 
         <WrapPanel Grid.Row="4" HorizontalAlignment="Center" Margin="0 10 0 0">
-            <Button Content="Submit" Margin="0 0 5 0" />
-            <Button Content="Cancel" />
+            <Button Content="Submit" Margin="0 0 5 0" Click="Submit_Click" />
         </WrapPanel>
     </Grid>
 </Window>

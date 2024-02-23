@@ -36,7 +36,7 @@ namespace skyline_odyssey_keycard_management
 			
 		}
 
-        public void Send_Email(string to, string subject, string body)
+        public static void Send_Email(string to, string subject, string body)
         {
 
 			MailMessage message = new MailMessage();
@@ -79,7 +79,7 @@ namespace skyline_odyssey_keycard_management
 					var timeDifference = DateTime.Now - usageHistory;
 
 					
-					if (DateTime.Now.Hour >= 14 && timeDifference.Hours < 8)
+					if (DateTime.Now.Hour <6 && timeDifference.Hours < 8)
 					{
 						foreach(var manager in managers)
 						{

@@ -9,7 +9,15 @@ namespace skyline_odyssey_keycard_management.Models
 {
 	public class KeycardRequests
 	{
-		public int Id { get; set; }
+
+        public KeycardRequests(int userId, string reason, string status)
+        {
+			User.UserId = userId;
+			Reason = reason;
+			Status = status;
+            
+        }
+        public int Id { get; set; }
 
 		
 		public User User { get; set; }
