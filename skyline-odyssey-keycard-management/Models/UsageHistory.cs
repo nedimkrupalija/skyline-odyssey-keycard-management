@@ -35,7 +35,6 @@ namespace skyline_odyssey_keycard_management.Models
 
 		public DateTime Timestamp { get; set; }
 
-
 		[ForeignKey("AcessPoint")]
 		public int AccessPointId { get; set; }
 

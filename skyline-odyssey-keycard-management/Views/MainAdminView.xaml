@@ -27,10 +27,8 @@
     <Grid Background="White">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            
-
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -92,11 +90,36 @@
 
         <DVC:Chart x:Name="columnChart" Grid.Column="3" Grid.Row="1" Width="450" Title="Last week's report" HorizontalAlignment="Right" Margin="0 0 25 0">
             <DVC:Chart.Series>
-                <DVC:ColumnSeries  Title="No. of users" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
-                    
+                <DVC:ColumnSeries Title="No. of users" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+                    <DVC:ColumnSeries.IndependentAxis>
+                        <DVC:CategoryAxis Orientation="X"/>
+                    </DVC:ColumnSeries.IndependentAxis>
+                    <DVC:ColumnSeries.DataPointStyle>
+                        <Style TargetType="DVC:ColumnDataPoint">
+                            <Setter Property="Background" Value="#3498db"/>
+                            <Setter Property="BorderBrush" Value="#ecf0f1"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DVC:ColumnDataPoint">
+                                        <Grid>
+                                            <Rectangle Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" RadiusX="5" RadiusY="5"/>
+                                            <TextBlock Text="{Binding Path=Value}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-5,0,0" FontWeight="Bold"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <ToolTip Content="{Binding Path=Value}"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DVC:ColumnSeries.DataPointStyle>
                 </DVC:ColumnSeries>
             </DVC:Chart.Series>
         </DVC:Chart>
+
 
     </Grid>
 </UserControl>

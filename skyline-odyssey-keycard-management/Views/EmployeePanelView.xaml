@@ -24,8 +24,7 @@
             <TextBlock Grid.Column="1" FontSize="25" Text="Employee panel" Margin="0 0 0 5"/>
 
             <WrapPanel Grid.Column="2" HorizontalAlignment="Right">
-                <Button Grid.Column="0" Margin="0 0 5 0" Content="Edit" />
-                <Button Grid.Column="1" Content="Log out" />
+                <Button Grid.Column="1" Content="Log out" Click="LogoutButton_Click"/>
             </WrapPanel>
 
         </Grid>
@@ -36,7 +35,7 @@
                     <GridView>
                         <GridViewColumn Header="Name" Width="80"/>
                         <GridViewColumn Header="Timestamp" Width="80"/>
-                        <GridViewColumn Header="Keycard" Width="80" />
+                        <GridViewColumn Header="Keycard" Width="80"/>
                     </GridView>
                 </ListView.View>
             </ListView>
