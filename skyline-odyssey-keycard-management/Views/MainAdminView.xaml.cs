@@ -45,6 +45,14 @@ namespace skyline_odyssey_keycard_management.Views
             this.Content = adminPanel;
         }
 
+        private void Requests_Clicked(object sender, RoutedEventArgs e)
+        {
+            KeycardRequestsView keycardRequestsView = new KeycardRequestsView();
+            keycardRequestsView.Width = this.Width;
+            keycardRequestsView.Height = this.Height;
+
+            this.Content = keycardRequestsView;
+        }
         private void AccessPoints_Clicked(object sender, RoutedEventArgs e)
         {
             AccessPointsView accessPointsPanel = new AccessPointsView();
