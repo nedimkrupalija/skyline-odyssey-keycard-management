@@ -1,4 +1,5 @@
-﻿using skyline_odyssey_keycard_management.Views;
+﻿
+using skyline_odyssey_keycard_management.Views;
 using System.Net.Mail;
 using System.Text;
 using System.Windows;
@@ -74,14 +75,18 @@ namespace skyline_odyssey_keycard_management
 
 					Trace.WriteLine("Usage history: " + usageHistory);
 
-
+					var managers = _databaseContext.Users.Where(u => u.Role.Name == "Manager" || u.Role.Name == "CEO").ToList();
 					var timeDifference = DateTime.Now - usageHistory;
 
-
+					
 					if (DateTime.Now.Hour >= 14 && timeDifference.Hours < 8)
 					{
-						//Send_Email("nkrupalija1@etf.unsa.ba", "Employee left", user.Role.Name + " " + user.FirstName + " " + user.LastName + " left the office. Worked today for " + timeDifference.Hours + " hour and " + timeDifference.Minutes + " minutes");
-					//	Send_Email(user.Email, "Employee left", "You left the office. Worked today for " + timeDifference.Hours + " hour and " + timeDifference.Minutes + " minutes");
+						foreach(var manager in managers)
+						{
+								Send_Email(manager.Email, "Employee left", user.Role.Name + " " + user.FirstName + " " + user.LastName + " left the office. Worked today for " + timeDifference.Hours + " hour and " + timeDifference.Minutes + " minutes");
+						}
+						
+						Send_Email(user.Email, "Employee left", "You left the office. Worked today for " + timeDifference.Hours + " hour and " + timeDifference.Minutes + " minutes");
 					}
 				}
 

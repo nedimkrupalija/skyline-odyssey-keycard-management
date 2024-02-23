@@ -24,8 +24,9 @@ namespace skyline_odyssey_keycard_management.Views
         public EmployeePanelView()
         {
             InitializeComponent();
-            var viewModel = new RoomsViewModel();
-            this.DataContext = viewModel;
+
+            this.DataContext = new EmployeePanelViewModel();
+
         }
 
         private void EnterRoom_Clicked(object sender, RoutedEventArgs e)
