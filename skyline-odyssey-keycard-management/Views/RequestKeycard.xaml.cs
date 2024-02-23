@@ -28,6 +28,10 @@ namespace skyline_odyssey_keycard_management.Views
             InitializeComponent();
             this.DataContext = new RequestKeycardViewModel();
             _databaseContext = new DatabaseContext();
+
+			if(LoginView.LoggedInUser.Keycard.IsActive)	
+				submitButton.IsEnabled = false;
+
         }
 
 		private void ShowMessageBox(string text, string caption)
