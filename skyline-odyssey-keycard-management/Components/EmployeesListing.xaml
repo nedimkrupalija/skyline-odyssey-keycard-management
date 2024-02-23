@@ -8,11 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Border BorderBrush="Gray" SnapsToDevicePixels="True" CornerRadius="2" BorderThickness="1">
-            <Grid>
+            <Grid >
                 <Grid.OpacityMask>
                     <VisualBrush Visual="{Binding ElementName=border}" />
                 </Grid.OpacityMask>
-                <Border x:Name="border" Background="White" CornerRadius="5"/>
+                <Border x:Name="border" Background="White" CornerRadius="5" />
                 <ListView x:Name="EmployeeList" BorderThickness="0" Padding="5" SelectedItem="{Binding SelectedEmployeeListingItemViewModel}" ItemsSource="{Binding EmployeeListingItemViewModels}" >
                     <ListView.ItemTemplate>
                         <DataTemplate>

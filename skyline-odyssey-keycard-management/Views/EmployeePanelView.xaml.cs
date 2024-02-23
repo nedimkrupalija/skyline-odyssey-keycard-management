@@ -1,4 +1,5 @@
-﻿using System;
+﻿using skyline_odyssey_keycard_management.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,21 @@ namespace skyline_odyssey_keycard_management.Views
         public EmployeePanelView()
         {
             InitializeComponent();
+
+            this.DataContext = new EmployeePanelViewModel();
+
         }
+
+        private void EnterRoom_Clicked(object sender, RoutedEventArgs e)
+        {
+            RoomsView roomsView = new RoomsView();
+            roomsView.Width = this.Width;
+            roomsView.Height = this.Height;
+
+            this.Content = roomsView;
+        }
+
     }
+
+    
 }

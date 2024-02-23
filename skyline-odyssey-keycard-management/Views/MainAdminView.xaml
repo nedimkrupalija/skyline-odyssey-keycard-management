@@ -28,42 +28,43 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            
-
+            <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel  Margin="10 10 0 0" Grid.Row="0"  Grid.ColumnSpan="2" Orientation="Horizontal">
-            <TextBlock FontSize="16px" FontWeight="Bold" Text="Welcome back "></TextBlock>
-            <TextBlock FontSize="16px" FontWeight="Bold" Text="{Binding Firstname}" ></TextBlock>
-            <TextBlock FontSize="16px" Margin="2 0 0 0" FontWeight="Bold" Text="{Binding Lastname}" ></TextBlock>
-        </StackPanel>
 
-        <Button Grid.Column="2" Click="LogoutButton_Click" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" Width="120" Height="70" Content="Log out"/>
+        <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 0 10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="10 10 0 0" Grid.Row="0" Grid.Column="0" Orientation="Horizontal" >
+                <TextBlock FontSize="16" FontWeight="Bold" Text="Welcome back "/>
+                <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Firstname}" Margin="2 0 0 0"/>
+                <TextBlock FontSize="16" FontWeight="Bold" Text="{Binding Lastname}" Margin="2 0 0 0"/>
+                <Button  Click="LogoutButton_Click" Grid.Row="0" Grid.Column="1" FontSize="10" Margin="8 0 0 0" Content="Log out"/>
+
+            </StackPanel>
+
+        </Grid>
+
         <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
 
-            <Button Height="60" Width="150" Margin="5" Click="AccessPoints_Clicked">
-                <TextBlock Text="Access Points" 
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Center" FontSize="15"/>
+            <Button Height="60" Width="130" Margin="5" Click="AccessPoints_Clicked">
+                <TextBlock Text="Access Points" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
             </Button>
-            <Button Height="60" Width="150" Margin="5" Click="Emloyees_CLicked">
-                <TextBlock Text="Employees" 
-                            HorizontalAlignment="Center" 
-                            VerticalAlignment="Center" FontSize="15"/>
+            <Button Height="60" Width="130" Margin="5" Click="Emloyees_CLicked">
+                <TextBlock Text="Employees" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
             </Button>
-            <Button Height="60" Width="150" Margin="5" Click="Reports_Clicked">
-                <TextBlock Text="Report" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center" FontSize="15"/>
+            <Button Height="60" Width="130" Margin="5" Click="Reports_Clicked">
+                <TextBlock Text="Reports" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
             </Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="50 0 0 0">
 
 
             <ListView Background="Transparent" BorderThickness="1" Grid.Row="1" ItemsSource="{Binding UsageHistories}" Width="auto" Grid.ColumnSpan="2" >
@@ -85,24 +86,58 @@
                         <GridViewColumn Width="auto" Header="Date of entry" DisplayMemberBinding="{Binding Timestamp, StringFormat='{}{0:dd MMM yyyy}'}"/>
                         <GridViewColumn Width="auto" Header="Time of entry" DisplayMemberBinding="{Binding Timestamp, StringFormat='{}{0:HH:mm}'}"/>
 
-
                     </GridView>
                 </ListView.View>
             </ListView>
         </StackPanel>
 
-
-
-
-
-
-        <DVC:Chart x:Name="columnChart" Grid.Column="3" Grid.Row="1" Width="450" Title="Last week's report" HorizontalAlignment="Right" Margin="0 0 25 0">
-            <DVC:Chart.Series>
-                <DVC:ColumnSeries  Title="No. of users" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+        <DVC:Chart x:Name="columnChart" Grid.Column="3" BorderThickness="0" Grid.Row="1" Width="450" HorizontalAlignment="Right" Margin="0 0 25 0">
+            <DVC:Chart.LegendStyle>
+                <Style TargetType="DV:Legend">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Setter Property="BorderBrush" Value="White" />
                     
+                </Style>
+            </DVC:Chart.LegendStyle>
+
+            <!-- ColumnSeries -->
+            <DVC:Chart.Series>
+                <DVC:ColumnSeries Title="" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+                    <DVC:ColumnSeries.IndependentAxis>
+                        <DVC:CategoryAxis Orientation="X"/>
+                    </DVC:ColumnSeries.IndependentAxis>
+                    <!-- DataPointStyle -->
+                    <DVC:ColumnSeries.DataPointStyle>
+                        <Style TargetType="DVC:ColumnDataPoint">
+                            <Setter Property="Background" Value="#3498DB"/>
+                            <Setter Property="BorderBrush" Value="#ECF0F1"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="DVC:ColumnDataPoint">
+                                        <Grid>
+                                            <Rectangle Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" RadiusX="5" RadiusY="5"/>
+                                            <TextBlock Text="{Binding Path=Value}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-5,0,0" FontWeight="Bold"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="ToolTip">
+                                <Setter.Value>
+                                    <ToolTip Content="{Binding Path=Value}"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DVC:ColumnSeries.DataPointStyle>
                 </DVC:ColumnSeries>
             </DVC:Chart.Series>
+
+            <!-- Title below the chart -->
+            <DVC:Chart.Title>
+                <TextBlock Text="Last weeks office attendence" HorizontalAlignment="Center" Margin="0 5"/>
+            </DVC:Chart.Title>
         </DVC:Chart>
+
 
     </Grid>
 </UserControl>
