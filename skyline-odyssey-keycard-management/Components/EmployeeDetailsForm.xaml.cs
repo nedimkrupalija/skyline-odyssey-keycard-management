@@ -77,41 +77,43 @@ namespace skyline_odyssey_keycard_management.Components
 		
 		private void Submit_Clicked(object sender, RoutedEventArgs e)
         {
-            
             try
-            { 
-            var roles = _databaseContext.Roles.ToList();
-            var users = _databaseContext.Users.ToList();
-				if (!Regex.IsMatch(FirstName.Text, @"^[a-zA-Z]+$") || !Regex.IsMatch(LastName.Text, @"^[a-zA-Z]+$"))
-					throw new Exception();
-
-			string userCount = Convert.ToString(users.FindAll(u => u.FirstName == FirstName.Text && u.LastName == LastName.Text).Count+1);
-            var userRole = new Role();
-            foreach(var role in roles)
             {
-                if(role.Name == ComboBoxRole.Text)
-                {
-                    userRole = role;
-				}
-            }
 
-            var userKeycard = new Keycard();    
-            var keycards = _databaseContext.Keycards.ToList();
-            foreach(var keycard in keycards)
-            {
-				if(keycard.Id == int.Parse(ComboBoxKeycard.Text))
+
+                var roles = _databaseContext.Roles.ToList();
+                var users = _databaseContext.Users.ToList();
+                if (!Regex.IsMatch(FirstName.Text, @"^[a-zA-Z]+$") || !Regex.IsMatch(LastName.Text, @"^[a-zA-Z]+$"))
+                    throw new Exception();
+
+                string userCount = Convert.ToString(users.FindAll(u => u.FirstName == FirstName.Text && u.LastName == LastName.Text).Count + 1);
+                var userRole = new Role();
+                foreach (var role in roles)
                 {
-					userKeycard = keycard;
+                    if (role.Name == ComboBoxRole.Text)
+                    {
+                        userRole = role;
+                    }
                 }
-            }
+
+                var userKeycard = new Keycard();
+                var keycards = _databaseContext.Keycards.ToList();
+                foreach (var keycard in keycards)
+                {
+                    if (keycard.Id == int.Parse(ComboBoxKeycard.Text))
+                    {
+                        userKeycard = keycard;
+                    }
+                }
 
 
                 userKeycard.IsAssigned = true;
+                userKeycard.IsActive = true;
                 _databaseContext.Update(userKeycard);
-                var addedUser = new User(FirstName.Text, LastName.Text, (FirstName.Text + LastName.Text + userCount).ToLower(), HashPassword((FirstName.Text + LastName.Text + userCount).ToLower()), userRole.Id, userRole, userKeycard.Id, userKeycard,  (FirstName.Text+"."+LastName.Text+"@skyline.be").ToLower());
-				_databaseContext.Users.Add(addedUser);
-				_databaseContext.SaveChanges();
-				//MessageBoxResult result = MessageBox.Show( "User succesfully added");
+                var addedUser = new User(FirstName.Text, LastName.Text, (FirstName.Text + LastName.Text + userCount).ToLower(), HashPassword((FirstName.Text + LastName.Text + userCount).ToLower()), userRole.Id, userRole, userKeycard.Id, userKeycard, (FirstName.Text + "." + LastName.Text + "@skyline.be").ToLower());
+                _databaseContext.Users.Add(addedUser);
+                _databaseContext.SaveChanges();
+                //MessageBoxResult result = MessageBox.Show( "User succesfully added");
                 string messageBoxText = "User succesfully added.";
                 string caption = "Success";
                 MessageBoxButton button = MessageBoxButton.OK;
@@ -122,26 +124,26 @@ namespace skyline_odyssey_keycard_management.Components
                 FirstName.Text = "";
                 LastName.Text = "";
                 ComboBoxKeycard.Text = "";
-              
-				var updatedUsers = _databaseContext.Users.Include(u => u.Keycard).Include(u => u.Role).ToList();
 
-               
-                this.Hide();   
-                
-                
+                var updatedUsers = _databaseContext.Users.Include(u => u.Keycard).Include(u => u.Role).ToList();
 
-			}
-			catch(Exception ex)
-            {
-                //MessageBoxResult result = MessageBox.Show( "Please input valid credentials");
-                string messageBoxText = "Please input valid credentials.";
-                string caption = "Warning";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                MessageBoxResult result;
 
-                result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
+                this.Hide();
+
             }
+            catch(Exception ex)
+            {
+				//MessageBoxResult result = MessageBox.Show( "Please input valid credentials");
+				string messageBoxText = "Please input valid credentials.";
+				string caption = "Warning";
+				MessageBoxButton button = MessageBoxButton.OK;
+				MessageBoxImage icon = MessageBoxImage.Warning;
+				MessageBoxResult result;
+
+				result = MessageBox.Show(messageBoxText, caption, button, icon, MessageBoxResult.OK);
+			}
+
+			
 			
 			
 
