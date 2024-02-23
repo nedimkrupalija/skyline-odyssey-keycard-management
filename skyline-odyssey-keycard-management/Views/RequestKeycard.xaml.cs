@@ -49,7 +49,7 @@ namespace skyline_odyssey_keycard_management.Views
 			var user = LoginView.LoggedInUser;
             if(firstButton.IsChecked == true)
             {
-                _databaseContext.KeycardRequests.Add(new KeycardRequests(user.UserId, "I'm a new employee and I don't have a keycard", "Unapproved"));
+                _databaseContext.KeycardRequests.Add(new KeycardRequests(user.UserId, "I'm a new employee and I don't have a keycard", "Pending"));
 				foreach (var manager in MainWindow.Managers)
 				{
 					MainWindow.Send_Email(manager.Email, "New keycard request", user.Role.Name + " " + user.FirstName + " " + user.LastName + " requested new keycard. Check your admin panel to view this request. Reason for request: \"I'm a new employee and I don't have a keycard.\"");
@@ -64,7 +64,7 @@ namespace skyline_odyssey_keycard_management.Views
 			}
 			else if(secondButton.IsChecked == true)
 			{
-				_databaseContext.KeycardRequests.Add(new KeycardRequests(LoginView.LoggedInUser.UserId, "I lost my keycard", "Unapproved"));
+				_databaseContext.KeycardRequests.Add(new KeycardRequests(LoginView.LoggedInUser.UserId, "I lost my keycard", "Pending"));
 				foreach (var manager in MainWindow.Managers)
 				{
 					MainWindow.Send_Email(manager.Email, "New keycard request", user.Role.Name + " " + user.FirstName + " " + user.LastName + " requested new keycard. Check your admin panel to view this request. Reason for request: \"I lost my keycard.\"");
@@ -77,7 +77,7 @@ namespace skyline_odyssey_keycard_management.Views
             
             else if(thirdButton.IsChecked == true)
             {
-				_databaseContext.KeycardRequests.Add(new KeycardRequests(LoginView.LoggedInUser.UserId, reasonBox.Text, "Unapproved"));
+				_databaseContext.KeycardRequests.Add(new KeycardRequests(LoginView.LoggedInUser.UserId, reasonBox.Text, "Pending"));
 				foreach (var manager in MainWindow.Managers)
 				{
 					MainWindow.Send_Email(manager.Email, "New keycard request", user.Role.Name + " " + user.FirstName + " " + user.LastName + " requested new keycard. Check your admin panel to view this request. Reason for request: " + "\"" +  reasonBox.Text + "\".");

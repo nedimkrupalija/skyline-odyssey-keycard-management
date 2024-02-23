@@ -36,10 +36,23 @@ namespace skyline_odyssey_keycard_management.Views
         {
             InitializeComponent();
 
+            _databaseContext = new DatabaseContext();
+
             var viewModel = new RoomsViewModel();
             this.DataContext = viewModel;
 
             this.DataContext = new EmployeePanelViewModel();
+
+            if(_databaseContext.KeycardRequests.Where(p => p.Status == "Pending" && p.User.UserId == LoginView.LoggedInUser.UserId).ToList().Count>0)
+            {
+                RequestKeycardButton.IsEnabled = false;
+            }
+            else
+            {
+                RequestKeycardButton.IsEnabled = true;
+            }
+            
+
 
         }
 
@@ -47,6 +60,7 @@ namespace skyline_odyssey_keycard_management.Views
         {
             try
             {
+
                 requestNewKeycardWindow.Show();
             }
             catch (Exception ex)
