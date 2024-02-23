@@ -19,7 +19,9 @@ namespace skyline_odyssey_keycard_management.ViewModels
 
         private DatabaseContext _databaseContext = new DatabaseContext();
 
-        private AccessPointListingItemViewModel _selectedAccessPointListingItemViewModel;
+	    public static AccessPoint CurrentAccessPoint { get; set; }
+
+		private AccessPointListingItemViewModel _selectedAccessPointListingItemViewModel;
         public AccessPointListingItemViewModel SelectedAccessPointListingItemViewModel
         {
 
@@ -31,9 +33,13 @@ namespace skyline_odyssey_keycard_management.ViewModels
             {
                 _selectedAccessPointListingItemViewModel = value;
                 OnPropertyChanged(nameof(SelectedAccessPointListingItemViewModel));
+                CurrentAccessPoint = _selectedAccessPointListingItemViewModel.AccessPoint;
+                OnPropertyChanged(nameof(CurrentAccessPoint));
                 _selectedAccessPointStore.SelectedAccessPoint = _selectedAccessPointListingItemViewModel?.AccessPoint;
             }
         }
+
+        
 
         public AccessPointListingViewModel(SelectedAccessPointStore selectedAccessPointStore)
         {

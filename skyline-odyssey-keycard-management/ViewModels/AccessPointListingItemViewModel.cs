@@ -1,4 +1,5 @@
-﻿using skyline_odyssey_keycard_management.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using skyline_odyssey_keycard_management.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,12 @@ namespace skyline_odyssey_keycard_management.ViewModels
         {
             _databaseContext = new DatabaseContext();
             AccessPoint = accessPoint;
-            UsersCount = _databaseContext.Users.Where(u => u.IsInRoom == true).Count();
+
+            var rooms = _databaseContext.AccessPoints.Include(u => u.UsageHistories).ThenInclude(u => u.User)
+                .Where(u => u.Id == accessPoint.Id && u.UsageHistories.Any(u => u.User.IsInRoom == true)).Count();
+                
+
+            UsersCount = rooms;
             
         }
     }
