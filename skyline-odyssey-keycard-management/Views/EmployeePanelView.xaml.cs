@@ -1,6 +1,8 @@
-﻿using skyline_odyssey_keycard_management.ViewModels;
+﻿using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,21 +23,49 @@ namespace skyline_odyssey_keycard_management.Views
     /// </summary>
     public partial class EmployeePanelView : UserControl
     {
+
+        private DatabaseContext _databaseContext;
+
+        public RoomsViewModel RoomsViewModel { get; set; }
         public EmployeePanelView()
         {
             InitializeComponent();
+
+            var viewModel = new RoomsViewModel();
+            this.DataContext = viewModel;
 
             this.DataContext = new EmployeePanelViewModel();
 
         }
 
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = new MainAdminView();
+
+        }
+
         private void EnterRoom_Clicked(object sender, RoutedEventArgs e)
         {
-            RoomsView roomsView = new RoomsView();
-            roomsView.Width = this.Width;
-            roomsView.Height = this.Height;
+            RoomsView roomsViewModel = new();
+            roomsViewModel.Width = this.Width;
+            roomsViewModel.Height = this.Height;
 
-            this.Content = roomsView;
+            this.Content = roomsViewModel;
+        }
+
+
+
+        private void Logout_Clicked(object sender, RoutedEventArgs e)
+        {
+            LoginView loginView = new LoginView();
+            LoginView.LoggedInUser.IsOnline = false;
+            Trace.WriteLine(LoginView.LoggedInUser);
+            LoginView.LoggedInUser.UsageHistories.Add(new UsageHistory(LoginView.LoggedInUser.Keycard.Id, DateTime.Now, 5, "Out"));
+
+            _databaseContext.Update(LoginView.LoggedInUser);
+
+            _databaseContext.SaveChanges();
+            this.Content = loginView;
         }
 
     }
