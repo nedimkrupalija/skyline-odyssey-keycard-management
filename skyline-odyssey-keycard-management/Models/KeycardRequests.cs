@@ -12,6 +12,7 @@ namespace skyline_odyssey_keycard_management.Models
 
         public KeycardRequests(int userId, string reason, string status)
         {
+			User = new User();
 			User.UserId = userId;
 			Reason = reason;
 			Status = status;
@@ -19,8 +20,8 @@ namespace skyline_odyssey_keycard_management.Models
         }
         public int Id { get; set; }
 
-		
-		public User User { get; set; }
+
+		public User User { get; set; } 
 
 
 		public string Reason { get; set; }

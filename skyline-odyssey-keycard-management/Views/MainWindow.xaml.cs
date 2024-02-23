@@ -16,6 +16,7 @@ using System.Net;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using skyline_odyssey_keycard_management.Models;
 
 
 namespace skyline_odyssey_keycard_management
@@ -26,14 +27,17 @@ namespace skyline_odyssey_keycard_management
     public partial class MainWindow : Window
     {
         private DatabaseContext _databaseContext;
+
+		public static List<User> Managers { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
             this.Closing += MainWindow_Closing;
 
             _databaseContext = new DatabaseContext();
-				
-			
+			Managers = _databaseContext.Users.Where(u => u.Role.Name == "Manager" || u.Role.Name == "CEO").ToList();
+
 		}
 
         public static void Send_Email(string to, string subject, string body)
@@ -75,13 +79,13 @@ namespace skyline_odyssey_keycard_management
 
 					Trace.WriteLine("Usage history: " + usageHistory);
 
-					var managers = _databaseContext.Users.Where(u => u.Role.Name == "Manager" || u.Role.Name == "CEO").ToList();
+					
 					var timeDifference = DateTime.Now - usageHistory;
 
 					
-					if (DateTime.Now.Hour <6 && timeDifference.Hours < 8)
+					if (DateTime.Now.Hour >= 14 && timeDifference.Hours < 8)
 					{
-						foreach(var manager in managers)
+						foreach(var manager in Managers)
 						{
 								Send_Email(manager.Email, "Employee left", user.Role.Name + " " + user.FirstName + " " + user.LastName + " left the office. Worked today for " + timeDifference.Hours + " hour and " + timeDifference.Minutes + " minutes");
 						}
