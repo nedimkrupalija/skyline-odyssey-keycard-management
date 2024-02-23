@@ -22,7 +22,7 @@
 
         <Button Grid.Row="0" Margin="5 0 0 0" Content="Back" HorizontalAlignment="Left" Click="BackButton_Clicked"/>
 
-        <ListView Grid.Row="1" Name="roomListView" Margin="50" MaxHeight="250" ItemsSource="{Binding KeycardRequests}">
+        <ListView  Grid.Row="1" Name="roomListView" Margin="50" MaxHeight="250" ItemsSource="{Binding KeycardRequests}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="User" Width="180">
@@ -36,12 +36,15 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Reason" Width="auto" DisplayMemberBinding="{Binding Reason}" />
-                    <GridViewColumn Header="Status" Width="180" DisplayMemberBinding="{Binding Status}" />
+                    <GridViewColumn Header="Status" Width="180" DisplayMemberBinding="{Binding Status, Mode=TwoWay}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Content="Approve request" Style="{StaticResource ButtonSecondary}" Tag="{Binding Name}" Margin="0,10,170,10"/>
-        <Button Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Content="Deny request" Style="{StaticResource ButtonSecondary}" Tag="{Binding Name}" Margin="0,10,10,10"/>
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Right">
+            <Button Width="150" Content="Approve request" Style="{StaticResource ButtonSecondary}" Margin="0,10,10,10" Click="Approve_Clicked"/>
+            <Button Width="150" Content="Deny request" Style="{StaticResource ButtonSecondary}"  Margin="0,10,10,10" Click="Deny_Clicked"/>
+        </WrapPanel>
+        
 
     </Grid>
 </UserControl>
