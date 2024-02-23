@@ -69,7 +69,11 @@ namespace skyline_odyssey_keycard_management.Views
             this.Content = loginView;
         }
 
+		private void Request_Click(object sender, RoutedEventArgs e)
+		{
+            
 		}
+	}
 
     
 }
