@@ -1,5 +1,7 @@
 ﻿using skyline_odyssey_keycard_management.Models;
+
 using skyline_odyssey_keycard_management.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -55,6 +57,7 @@ namespace skyline_odyssey_keycard_management.Views
 
 
 
+
         private void Logout_Clicked(object sender, RoutedEventArgs e)
         {
             LoginView loginView = new LoginView();
@@ -67,6 +70,7 @@ namespace skyline_odyssey_keycard_management.Views
             _databaseContext.SaveChanges();
             this.Content = loginView;
         }
+
 
     }
 

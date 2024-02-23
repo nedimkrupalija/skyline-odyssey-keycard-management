@@ -27,8 +27,10 @@
     <Grid Background="White">
 
         <Grid.RowDefinitions>
+
             <RowDefinition Height="1*" />
             <RowDefinition Height="1.5*" />
+
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -102,15 +104,16 @@
 
             <!-- ColumnSeries -->
             <DVC:Chart.Series>
-                <DVC:ColumnSeries Title="" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
+
+                <DVC:ColumnSeries Title="No. of users" IndependentValueBinding="{Binding Path=Key}" DependentValueBinding="{Binding Path=Value}">
                     <DVC:ColumnSeries.IndependentAxis>
                         <DVC:CategoryAxis Orientation="X"/>
                     </DVC:ColumnSeries.IndependentAxis>
-                    <!-- DataPointStyle -->
                     <DVC:ColumnSeries.DataPointStyle>
                         <Style TargetType="DVC:ColumnDataPoint">
-                            <Setter Property="Background" Value="#3498DB"/>
-                            <Setter Property="BorderBrush" Value="#ECF0F1"/>
+                            <Setter Property="Background" Value="#3498db"/>
+                            <Setter Property="BorderBrush" Value="#ecf0f1"/>
+
                             <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="Template">
                                 <Setter.Value>

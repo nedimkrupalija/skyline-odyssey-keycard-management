@@ -27,7 +27,9 @@
             <TextBlock Grid.Column="1" FontSize="25" Text="Employee panel" Margin="0 0 0 5"/>
 
             <WrapPanel Grid.Column="2" HorizontalAlignment="Right">
+
                 <Button Grid.Column="1" Content="Log out" Click="Logout_Clicked"/>
+
             </WrapPanel>
 
         </Grid>
@@ -36,10 +38,12 @@
             <ListView ItemsSource="{Binding UsageHistories}">
                 <ListView.View>
                     <GridView>
+
                         <GridViewColumn Width="214"  Header="Room" DisplayMemberBinding="{Binding AccessPoint.Name}" />
                         <GridViewColumn Width="214" Header="Keycard" DisplayMemberBinding="{Binding CardId}"/>
                         <GridViewColumn Width="214" Header="Date" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:dd MMM yyyy}}"/>
                         <GridViewColumn Width="214" Header="Time" DisplayMemberBinding="{Binding Timestamp, StringFormat={}{0:HH:mm}}"/>
+
                     </GridView>
                 </ListView.View>
             </ListView>
