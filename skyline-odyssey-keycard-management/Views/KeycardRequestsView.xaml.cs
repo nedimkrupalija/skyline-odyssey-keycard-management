@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.ApplicationServices;
 using skyline_odyssey_keycard_management.Models;
 using skyline_odyssey_keycard_management.ViewModels;
 using System;
@@ -70,9 +71,11 @@ namespace skyline_odyssey_keycard_management.Views
                 roomListView.ItemsSource = databaseContext.KeycardRequests.Include(u => u.User).ToList();
 
                 string messageBoxText = "Keycard request successfully approved";
-                string _caption = "Keycard appprovel";
+                string _caption = "Keycard appproval";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Information;
+
+                MainWindow.Send_Email(selectedUser.Email, "Request approval", "Your keycard request was approved.");
                 MessageBox.Show(messageBoxText, _caption, button, icon, MessageBoxResult.OK);
 
             }
@@ -95,6 +98,7 @@ namespace skyline_odyssey_keycard_management.Views
             string _caption = "Keycard denied";
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBoxImage icon = MessageBoxImage.Information;
+            MainWindow.Send_Email(selectedUser.Email, "Request denied", "Your keycard request was denied.");
             MessageBox.Show(messageBoxText, _caption, button, icon, MessageBoxResult.OK);
         }
     }
