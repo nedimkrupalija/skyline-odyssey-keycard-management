@@ -23,6 +23,9 @@
         <DataTemplate x:Name="usageReportsView" DataType="{x:Type viewmodels:UsageReportsViewModel}">
             <views:ReportsView DataContext="{Binding}"></views:ReportsView>
         </DataTemplate>
+        <DataTemplate x:Name="keycardRequestsView" DataType="{x:Type viewmodels:RequestKeycardViewModel}">
+            <views:KeycardRequestsView DataContext="{Binding}"></views:KeycardRequestsView>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid Background="White">
 
@@ -63,6 +66,9 @@
             </Button>
             <Button Height="60" Width="130" Margin="5" Click="Reports_Clicked">
                 <TextBlock Text="Reports" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
+            </Button>
+            <Button Height="60" Width="150" Margin="5" Click="Requests_Clicked">
+                <TextBlock Text="Keycard requests" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15"/>
             </Button>
         </StackPanel>
 
