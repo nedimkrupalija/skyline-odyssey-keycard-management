@@ -38,6 +38,7 @@ namespace skyline_odyssey_keycard_management.Views
 
             _databaseContext = new DatabaseContext();
 
+            username.Text = LoginView.LoggedInUser.FirstName + " " + LoginView.LoggedInUser.LastName;
             var viewModel = new RoomsViewModel();
             this.DataContext = viewModel;
 
