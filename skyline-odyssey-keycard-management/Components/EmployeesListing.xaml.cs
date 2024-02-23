@@ -1,4 +1,5 @@
-﻿using skyline_odyssey_keycard_management.ViewModels;
+﻿using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,18 @@ namespace skyline_odyssey_keycard_management.Components
         public EmployeesListing()
         {
             InitializeComponent();
+            this.DataContext = new EmployeeListingViewModel(new Store.SelectedEmployeeStore());
+            
+            
         }
-    }
+
+        public void AddEmployee(User user)
+        {
+            EmployeeList.Items.Add(user);
+            
+		}
+
+              
+
+	}
 }

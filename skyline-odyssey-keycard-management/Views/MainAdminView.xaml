@@ -65,17 +65,23 @@
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
 
-            <ListView  Grid.Row="1" ItemsSource="{Binding Users}" Width="auto" >
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="auto" Header="Users in office" DisplayMemberBinding="{Binding Username}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
 
-            <ListView Grid.Row="1" ItemsSource="{Binding UsageHistories}" Width="auto" Grid.ColumnSpan="2" >
+            <ListView Background="Transparent" BorderThickness="1" Grid.Row="1" ItemsSource="{Binding UsageHistories}" Width="auto" Grid.ColumnSpan="2" >
+               
+                  
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn Header="User" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding User.FirstName}" Margin="0,0,2,0"/>
+                                        <TextBlock Text="{Binding User.LastName}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
                         <GridViewColumn Width="auto" Header="Date of entry" DisplayMemberBinding="{Binding Timestamp, StringFormat='{}{0:dd MMM yyyy}'}"/>
                         <GridViewColumn Width="auto" Header="Time of entry" DisplayMemberBinding="{Binding Timestamp, StringFormat='{}{0:HH:mm}'}"/>
 
