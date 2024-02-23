@@ -1,6 +1,9 @@
-﻿using skyline_odyssey_keycard_management.ViewModels;
+﻿using skyline_odyssey_keycard_management.Models;
+using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace skyline_odyssey_keycard_management.Components
 {
     /// <summary>
@@ -21,12 +25,15 @@ namespace skyline_odyssey_keycard_management.Components
     /// </summary>
     public partial class EmployeeDetails : UserControl
     {
-        
+
+        private DatabaseContext _databaseContext = new DatabaseContext();
+
         public EmployeeDetails()
         {
             InitializeComponent();
            
 
         }
+
     }
 }
