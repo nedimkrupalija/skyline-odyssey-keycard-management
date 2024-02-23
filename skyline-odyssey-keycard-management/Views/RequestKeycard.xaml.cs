@@ -3,6 +3,7 @@ using skyline_odyssey_keycard_management.Models;
 using skyline_odyssey_keycard_management.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -46,9 +47,21 @@ namespace skyline_odyssey_keycard_management.Views
 		private void Submit_Click(object sender, RoutedEventArgs e)
 		{
 			var user = LoginView.LoggedInUser;
+
+			user.Keycard.IsActive = false;
+
+			var dbContext = new DatabaseContext();
+
             if(firstButton.IsChecked == true)
             {
-               _databaseContext.KeycardRequests.Add(new KeycardRequests(user.UserId, "I'm a new employee and I don't have a keycard", "Pending"));
+				var keycardrequest = new KeycardRequests
+				{
+					UserId = user.UserId,
+					Reason = "I'm a new employee and I don't have a keycard",
+					Status = "Pending"
+				};
+
+				dbContext.KeycardRequests.Add(keycardrequest);
 				foreach (var manager in MainWindow.Managers)
 				{
 					MainWindow.Send_Email(manager.Email, "New keycard request", user.Role.Name + " " + user.FirstName + " " + user.LastName + " requested new keycard. Check your admin panel to view this request. Reason for request: \"I'm a new employee and I don't have a keycard.\"");
@@ -57,13 +70,21 @@ namespace skyline_odyssey_keycard_management.Views
 
 				ShowMessageBox("You have successfully requested new keycard", "Information");
 
-				
+				dbContext.SaveChanges();
 
 				this.Hide();
 			}
 			else if(secondButton.IsChecked == true)
 			{
-				_databaseContext.KeycardRequests.Add(new KeycardRequests(LoginView.LoggedInUser.UserId, "I lost my keycard", "Pending"));
+				var keycardrequest = new KeycardRequests
+				{
+					UserId = user.UserId,
+					Reason = "I lost my keycard",
+					Status = "Pending"
+				};
+				_databaseContext.KeycardRequests.Add(keycardrequest);
+				_databaseContext.SaveChanges();
+				
 				foreach (var manager in MainWindow.Managers)
 				{
 					MainWindow.Send_Email(manager.Email, "New keycard request", user.Role.Name + " " + user.FirstName + " " + user.LastName + " requested new keycard. Check your admin panel to view this request. Reason for request: \"I lost my keycard.\"");
@@ -71,20 +92,30 @@ namespace skyline_odyssey_keycard_management.Views
 				MainWindow.Send_Email(user.Email, "New keycard request", "Your keycard request was sent, and it is waiting for approval.");
 				ShowMessageBox("You have successfully requested new keycard", "Information");
 
+				
+
 				this.Hide();
 			}
             
             else if(thirdButton.IsChecked == true)
             {
-				_databaseContext.KeycardRequests.Add(new KeycardRequests(LoginView.LoggedInUser.UserId, reasonBox.Text, "Pending"));
+
+				var keycardrequest = new KeycardRequests
+				{
+					UserId = user.UserId,
+					Reason = reasonBox.Text,
+					Status = "Pending"
+				};
+
+				_databaseContext.KeycardRequests.Add(keycardrequest);
 				foreach (var manager in MainWindow.Managers)
 				{
 					MainWindow.Send_Email(manager.Email, "New keycard request", user.Role.Name + " " + user.FirstName + " " + user.LastName + " requested new keycard. Check your admin panel to view this request. Reason for request: " + "\"" +  reasonBox.Text + "\".");
 				}
 				MainWindow.Send_Email(user.Email, "New keycard request", "Your keycard request was sent, and it is waiting for approval.");
-
+				
 				ShowMessageBox("You have successfully requested new keycard", "Information");
-
+				_databaseContext.SaveChanges();
 				this.Hide();
 			}
             else

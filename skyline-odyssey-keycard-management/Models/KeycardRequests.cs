@@ -1,4 +1,5 @@
-﻿using System;
+﻿using skyline_odyssey_keycard_management.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -12,16 +13,23 @@ namespace skyline_odyssey_keycard_management.Models
 
       public KeycardRequests(int userId, string reason, string status)
         {
-			User = new User();
-			User.UserId = userId;
+
+			UserId = userId;
 			Reason = reason;
 			Status = status;
             
         }
+
+        public KeycardRequests()
+        {
+            
+        }
+
         public int Id { get; set; }
 
-
-		public User User { get; set; } 
+		
+		public int UserId { get; set; }
+		public User User{ get; set; } 
 
 
 		public string Reason { get; set; }

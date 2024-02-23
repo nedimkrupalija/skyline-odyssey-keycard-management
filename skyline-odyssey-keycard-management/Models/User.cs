@@ -43,6 +43,7 @@ namespace skyline_odyssey_keycard_management.Models
 			Email = email;
 		}
 
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		[Key]
 		public int UserId { get; set; }
 		public string FirstName { get; set; }
@@ -65,6 +66,8 @@ namespace skyline_odyssey_keycard_management.Models
 		public string Email { get; set; }
 
 		public Boolean IsInRoom { get; set; }
+
+		
 
 		public ICollection<UsageHistory> UsageHistories { get; set; }	
 

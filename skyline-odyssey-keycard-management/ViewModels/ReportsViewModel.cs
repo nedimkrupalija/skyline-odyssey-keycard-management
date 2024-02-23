@@ -124,6 +124,8 @@ namespace skyline_odyssey_keycard_management.ViewModels
             SelectedEndHour = "18";
             DatabaseContext db = new DatabaseContext();
            
+          
+
            UsageHistoryList = db.UsageHistories.Include(u => u.AccessPoint).Include(u => u.Keycard).ThenInclude(u => u.User).Where(u => (SelectedStartHour == null || u.Timestamp.Hour >= int.Parse(SelectedStartHour))
                                    && (SelectedEndHour == null || u.Timestamp.Hour < int.Parse(SelectedEndHour))).ToList();
         }
